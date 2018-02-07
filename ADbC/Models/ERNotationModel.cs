@@ -17,6 +17,7 @@ namespace ADbC.Models
             currentRelation = selRelation;
             currentNotation = selNotation;
 
+            //Structure for DB data goes here
             ERList = new List<ERNotationObject>
             {
                 new ERNotationObject(1,1),
@@ -26,6 +27,7 @@ namespace ADbC.Models
             };
         }
 
+        //Handling and output methods go here
         public string CurrentToString
         {
             get
