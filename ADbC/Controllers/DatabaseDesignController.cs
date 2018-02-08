@@ -18,12 +18,12 @@ namespace ADbC.Controllers
         {
             ERNotationModel model;
 
-            //normall here we'd get the database data and pass
+            //normally here we'd get the database data and pass
             //these in to select from that list, but it's all
             //hard coded for now, just testing
-            if ((rel is int r) && (not is int n))
+            if (rel > 0 && not > 0)
             {
-                model = new ERNotationModel(r, n);
+                model = new ERNotationModel(rel, not);
                 return PartialView("ERNotationOutputPartial", model);
             }
             else
