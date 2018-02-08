@@ -189,6 +189,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DatabaseDesign\ERNotation.cshtml" />
     <Content Include="Views\DatabaseDesign\ERNotationOutputPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutForFormatting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
