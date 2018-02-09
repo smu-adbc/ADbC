@@ -14,6 +14,36 @@ namespace ADbC.Controllers
             return View();
         }
 
+        public ActionResult ScenarioToER()
+        {
+            return View();
+        }
+
+        public ActionResult ER_ToTables()
+        {
+            return View();
+        }
+
+        public ActionResult FunctionalDependencies()
+        {
+            return View();
+        }
+
+        public ActionResult Normalization()
+        {
+            return View();
+        }
+
+        public ActionResult Denormalization()
+        {
+            return View();
+        }
+
+        public ActionResult Anomalies()
+        {
+            return View();
+        }
+
         public ActionResult ShowERNotationOutput(int rel, int not)
         {
             ERNotationModel model;
