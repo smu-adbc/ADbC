@@ -19,7 +19,7 @@ namespace ADbC.Controllers
             return View();
         }
 
-        public ActionResult ER_ToTables()
+        public ActionResult ERToTables()
         {
             return View();
         }

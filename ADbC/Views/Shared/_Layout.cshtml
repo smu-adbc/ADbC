@@ -35,9 +35,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database Design</a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("ER Notation", "ERNotation", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Scenario to ER", "Scenario to ER", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("ER to Tables", "ER to Tables", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Functional Dependencies", "Functional Dependencies", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Scenario to ER", "ScenariotoER", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("ER to Tables", "ERToTables", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Functional Dependencies", "FunctionalDependencies", "DatabaseDesign")</li>
                             <li>@Html.ActionLink("Normalization", "Normalization", "DatabaseDesign")</li>
                             <li>@Html.ActionLink("Denormalization", "Denormalization", "DatabaseDesign")</li>
                         </ul>
@@ -47,11 +47,11 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SQL</a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Interactive SQL", "Interactive SQL", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("SQL Pseudocode", "SQL Pseudocode", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Embedded SQL", "Embedded SQL", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Stored Procedures and Triggers", "Stored Procedures and Triggers", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Referential Integrity", "Referential Integrity", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Interactive SQL", "InteractiveSQL", "SQL")</li>
+                            <li>@Html.ActionLink("SQL Pseudocode", "SQLPseudocode", "SQL")</li>
+                            <li>@Html.ActionLink("Embedded SQL", "EmbeddedSQL", "SQL")</li>
+                            <li>@Html.ActionLink("Stored Procedures and Triggers", "SP_Triggers", "SQL")</li>
+                            <li>@Html.ActionLink("Referential Integrity", "ReferentialIntegrity", "SQL")</li>
                         </ul>
                     </li>
 
@@ -59,8 +59,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transactions</a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Concurrency", "Concurrency", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Recovery", "Recovery", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Concurrency", "Concurrency", "Transactions")</li>
+                            <li>@Html.ActionLink("Recovery", "Recovery", "Transactions")</li>
                         </ul>
                     </li>
 
@@ -68,12 +68,12 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Security</a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Access Control", "Access Control", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Security Matrix", "Security Matrix", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Row Level Security", "Row Level Security", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("SQL Injection", "SQL Injection", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Database Inference", "Database Inference", "DatabaseDesign")</li>
-                            <li>@Html.ActionLink("Database Auditing", "Database Auditing", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Access Control", "AccessControl", "Security")</li>
+                            <li>@Html.ActionLink("Security Matrix", "SecurityMatrix", "Security")</li>
+                            <li>@Html.ActionLink("Row Level Security", "RowLevelSecurity", "Security")</li>
+                            <li>@Html.ActionLink("SQL Injection", "SQLInjection", "Security")</li>
+                            <li>@Html.ActionLink("Database Inference", "DatabaseInference", "Security")</li>
+                            <li>@Html.ActionLink("Database Auditing", "DatabaseAuditing", "Security")</li>
                         </ul>
                     </li>
 
