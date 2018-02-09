@@ -11,25 +11,73 @@
     @RenderSection("scripts", required: false)
 </head>
 <body>
+
+    <!-- NAVIGATION BAR -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+
+            <!-- ADbC Button -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ADBC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Database Design</a></span>
+
+                    <!-- Database Design -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database Design</a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("ER Notation", "ERNotation", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Scenario to ER", "Scenario to ER", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("ER to Tables", "ER to Tables", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Functional Dependencies", "Functional Dependencies", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Normalization", "Normalization", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Denormalization", "Denormalization", "DatabaseDesign")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    <!-- SQL -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SQL</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Interactive SQL", "Interactive SQL", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("SQL Pseudocode", "SQL Pseudocode", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Embedded SQL", "Embedded SQL", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Stored Procedures and Triggers", "Stored Procedures and Triggers", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Referential Integrity", "Referential Integrity", "DatabaseDesign")</li>
+                        </ul>
+                    </li>
+
+                    <!-- Transactions -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transactions</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Concurrency", "Concurrency", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Recovery", "Recovery", "DatabaseDesign")</li>
+                        </ul>
+                    </li>
+
+                    <!-- Security -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Security</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Access Control", "Access Control", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Security Matrix", "Security Matrix", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Row Level Security", "Row Level Security", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("SQL Injection", "SQL Injection", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Database Inference", "Database Inference", "DatabaseDesign")</li>
+                            <li>@Html.ActionLink("Database Auditing", "Database Auditing", "DatabaseDesign")</li>
+                        </ul>
+                    </li>
+
+
                 </ul>
             </div>
         </div>
@@ -37,7 +85,7 @@
     <div class="container body-content">
         <div class="col-sm-12 col-md-12 col-lg-12">
             @RenderBody()
-        </div>        
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
