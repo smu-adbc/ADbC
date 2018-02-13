@@ -1,2 +1,2 @@
-﻿@model ADbC.Models.ERNotationModel
-<p>@Html.DisplayFor(x => x.CurrentToString)</p>
+﻿@model ADbC.Models.ERNotationImageGenerator
+<img class="img-responsive" src="@Model.GenerateImageURL()" />

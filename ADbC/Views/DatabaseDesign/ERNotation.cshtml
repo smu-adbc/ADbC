@@ -1,4 +1,4 @@
-﻿@model ADbC.Models.ERNotationModel
+﻿@model ADbC.Models.ERNotationModelDataContext
 
 @{
     ViewBag.Title = "ERNotation";
@@ -8,26 +8,32 @@
 <h2>ER Notation</h2>
 <hr />
 <div class="row" id="radioBox">
-    <div class="col-lg-offset-1 col-lg-2">
-        <p>@Html.RadioButton("relation", "1", new { id = "radios"}) Relation 1</p>
-        <p>@Html.RadioButton("relation", "2", new { id = "radios"}) Relation 2</p>
+    <div class="col-lg-offset-3 col-lg-3">
+        @foreach (ADbC.Models.keysERNotation n in Model.NotationList)
+        {
+            <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
+        }
     </div>
-    <div class="col-lg-2">
-        <p>@Html.RadioButton("notation", "1", new { id = "radios"}) Notation 1</p>
-        <p>@Html.RadioButton("notation", "2", new { id = "radios"}) Notation 2</p>
+    <div class="col-lg-3">
+        @foreach (ADbC.Models.keysERRelationship r in Model.RelationshipList)
+        {
+            <p>@Html.RadioButton("relation", r.DescriptionShort, new { id = "radios" }) @r.DescriptionLong</p>
+        }
     </div>
 </div>
-<div class="row" id="output">
-    
+<div class="row" style="min-height: 260px">
+    <div class="col-lg-offset-3  col-lg-6" id="output">
+
+    </div>
 </div>
 <script>
     var url = '@Url.Action("ShowERNotationOutput", "DatabaseDesign")';
     $(document).ready(function () {
         $('#radioBox input:radio').click(function () {
-            var selRelation = $('input[name=relation]:checked').val();
             var selNotation = $('input[name=notation]:checked').val();
-            if ((selRelation * selNotation) > 0) {
-                $('#output').load(url, { rel: selRelation, not: selNotation });
+            var selRelation = $('input[name=relation]:checked').val();
+            if (selNotation.length && selRelation.length > 0) {
+                $('#output').load(url, { not: selNotation, rel: selRelation });
             }
         })
     })

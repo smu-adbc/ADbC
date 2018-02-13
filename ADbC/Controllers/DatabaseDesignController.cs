@@ -10,8 +10,13 @@ namespace ADbC.Controllers
     public class DatabaseDesignController : Controller
     {
         public ActionResult ERNotation()
-        {            
-            return View();
+        {
+            ERNotationModelDataContext ERdc = new ERNotationModelDataContext();
+            ERdc.ObjectTrackingEnabled = false;
+            ERdc.NotationList = ERdc.SelectERNotations().ToList();
+            ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
+
+            return View(ERdc);
         }
 
         public ActionResult ScenarioToER()
@@ -44,22 +49,11 @@ namespace ADbC.Controllers
             return View();
         }
 
-        public ActionResult ShowERNotationOutput(int rel, int not)
+        public ActionResult ShowERNotationOutput(string not, string rel)
         {
-            ERNotationModel model;
+            ERNotationImageGenerator imageGenerator = new ERNotationImageGenerator(not, rel);
 
-            //normally here we'd get the database data and pass
-            //these in to select from that list, but it's all
-            //hard coded for now, just testing
-            if (rel > 0 && not > 0)
-            {
-                model = new ERNotationModel(rel, not);
-                return PartialView("ERNotationOutputPartial", model);
-            }
-            else
-            {
-                return null;
-            }
+            return PartialView("ERNotationOutputPartial", imageGenerator);
         }
     }
 }

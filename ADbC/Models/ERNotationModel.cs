@@ -5,50 +5,9 @@ using System.Web;
 
 namespace ADbC.Models
 {
-    public class ERNotationModel
+    public partial class ERNotationModelDataContext
     {
-        public int currentRelation;
-        public int currentNotation;
-
-        List<ERNotationObject> ERList;
-
-        public ERNotationModel(int selRelation, int selNotation)
-        {
-            currentRelation = selRelation;
-            currentNotation = selNotation;
-
-            //Structure for DB data goes here
-            ERList = new List<ERNotationObject>
-            {
-                new ERNotationObject(1,1),
-                new ERNotationObject(1,2),
-                new ERNotationObject(2,1),
-                new ERNotationObject(2,2)
-            };
-        }
-
-        //Handling and output methods go here
-        public string CurrentToString
-        {
-            get
-            {
-                ERNotationObject current = ERList.Find(x => x.RelationID == currentRelation && x.NotationID == currentNotation);
-                return current.Output;
-            }            
-        }
-    }
-
-    public class ERNotationObject
-    {
-        public int RelationID;
-        public int NotationID;
-        public string Output;
-
-        public ERNotationObject(int rel, int not)
-        {
-            RelationID = rel;
-            NotationID = not;
-            Output = $"Relation: {RelationID} -- Notation: {NotationID}";
-        }
+        public List<keysERNotation> NotationList;
+        public List<keysERRelationship> RelationshipList;
     }
 }

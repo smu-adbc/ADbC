@@ -66,10 +66,12 @@
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
@@ -169,12 +171,62 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ERNotationModel.cs" />
+    <Compile Include="Models\ERNotationImageGenerator.cs" />
+    <Compile Include="Models\ERNotationModel.cs">
+      <DependentUpon>ERNotationModel.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ERNotationModel.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERNotationModel.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\CrowsFeet\nnBinary.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\IDEF1X\nnBinary.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\Max\nnBinary.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\MinMax\nnBinary.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\MO\nnBinary.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\11Binary.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\1nBinaryID.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\1nBinaryNI.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\1nUnary.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\compDis.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\incOver.PNG" />
+    <Content Include="Content\Images\ERNotation\UMLC\nnBinary.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -184,6 +236,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\ERNotationModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ERNotationModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\ERNotationModel.dbml.layout">
+      <DependentUpon>ERNotationModel.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -238,7 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="docs\" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +312,10 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
