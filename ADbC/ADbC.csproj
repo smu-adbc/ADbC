@@ -189,6 +189,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Logos\adbcLogoLight.png" />
     <Content Include="Content\Images\ERNotation\CrowsFeet\11Binary.PNG" />
     <Content Include="Content\Images\ERNotation\CrowsFeet\1nUnary.PNG" />
     <Content Include="Content\Images\ERNotation\CrowsFeet\1nBinaryID.PNG" />
@@ -310,7 +311,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DatabaseDesign\ERNotation.cshtml" />
     <Content Include="Views\DatabaseDesign\ERNotationOutputPartial.cshtml" />
-    <Content Include="Views\Shared\_LayoutForFormatting.cshtml" />
+    <Content Include="Views\Shared\_Module.cshtml" />
     <Content Include="Views\DatabaseDesign\ScenarioToER.cshtml" />
     <Content Include="Views\DatabaseDesign\ERToTables.cshtml" />
     <Content Include="Views\DatabaseDesign\FunctionalDependencies.cshtml" />

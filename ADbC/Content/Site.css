@@ -5,6 +5,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    padding-top: 20px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -21,4 +22,41 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.intro-list > ul{
+    margin-bottom: 24px;
+}
+
+.jumbo-logo {
+    margin: auto;
+    max-width: 70%;
+}
+
+@media (max-width: 767px) {
+    .jumbo-logo {
+        margin: auto;
+        max-width: 90%
+    }
+}
+
+.module-row{
+    padding: 0px;
+    margin: 0px;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.nav-img {
+    max-height: 60px;
+    padding: 15px;
+    width: auto;
+}
+
+.navbar-nav > li > a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    line-height: 36px;
 }

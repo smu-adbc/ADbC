@@ -1,29 +1,132 @@
 ﻿@model ADbC.Models.ERNotationModelDataContext
 
 @{
-    ViewBag.Title = "ERNotation";
+    ViewBag.Title = "ER Notation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ER Notation</h2>
+<div class="row">
+    <h2>@ViewBag.Title<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#introModal" style="float: right; margin-bottom:inherit">Introduction</button></h2>
+</div>
 <hr />
 <div class="row" id="radioBox">
-    <div class="col-lg-offset-3 col-lg-3">
+    <div class="col-md-offset-3 col-md-3 col-xs-6">
+        <h3>Notation Style</h3>
+        <hr />
         @foreach (ADbC.Models.keysERNotation n in Model.NotationList)
         {
             <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
         }
     </div>
-    <div class="col-lg-3">
+    <div class="col-md-3 col-xs-6"">
+        <h3>Relationship Type</h3>
+        <hr />
         @foreach (ADbC.Models.keysERRelationship r in Model.RelationshipList)
         {
             <p>@Html.RadioButton("relation", r.DescriptionShort, new { id = "radios" }) @r.DescriptionLong</p>
         }
     </div>
 </div>
-<div class="row" style="min-height: 260px">
-    <div class="col-lg-offset-3  col-lg-6" id="output">
+<div class="row" style="min-height: 260px;">
+    <div class="col-md-offset-3  col-md-6" id="output">
 
+    </div>
+</div>
+<div class="modal modal fade" id="introModal" role="contentinfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>@ViewBag.Title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="accordion" class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Notations and Symbols</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse in">
+                            <div class="panel-body">
+                                <p>Every E-R diagram consists of several components: <b>entities, attributes, identifiers,</b> and <b>relationships.</b></p>
+                                <p>It is possible to diagram these components using one of many methods of E-R Diagramming.</p>
+                                <p>Even though there is not one universal, acceptable method to E-R Diagramming, many of the <b>symbols</b> used remain consistent.</p>
+                                <ul>
+                                    <li>First, <b>classes</b> are denoted by <b>rectangles</b>.</li>
+                                    <li><b>Lines</b> are then drawn between the classes to depict a link between two classes. Often, a <b>diamond</b> or <b>triangle</b> will be drawn on this line that tells how the two classes are related.</li>
+                                    <li>Finally, different diagrams use <b>unique symbols</b> to show <b>cardinality</b>. These symbols hardly ever remain consistent, and can be numbers, hash marks, diamonds, or crow's feet.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Crow's Feet</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <img class="img-responsive" src="http://via.placeholder.com/200x100" style="margin:0 auto 10px auto" />
+                                <ul>
+                                    <li>Uses <b>"crow's feet"</b> to show cardinality</li>
+                                    <li>Shows <b>mandatory</b> (|) and <b>optional</b> (O) values</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Maximum / Min:Max</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <img class="img-responsive" src="http://via.placeholder.com/200x100" style="margin:0 auto 10px auto" />
+                                <ul>
+                                    <li>Shows <b>numerical maximum</b>, or <b>minimum:maximum</b> on each side of a relationship</li>
+                                    <li>Uses the number <b>zero</b> (0) to note an <b>optional</b> relationship</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">IDEF1X</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <img class="img-responsive" src="http://via.placeholder.com/200x100" style="margin:0 auto 10px auto" />
+                                <ul>
+                                    <li>Used by US Government organizations</li>
+                                    <li>Uses the number <b>open</b> and <b>closed symbols</b> to note cardinality</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">UML Class</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <img class="img-responsive" src="http://via.placeholder.com/200x100" style="margin:0 auto 10px auto" />
+                                <ul>
+                                    <li>Cardinality is shown with Minimum to Maximum values seperated by an <b>ellispis</b></li>
+                                    <li>A <b>triangle</b> is used to note the <b>direction</b> of the relationship</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script>
