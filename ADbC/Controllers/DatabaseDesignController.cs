@@ -53,12 +53,5 @@ namespace ADbC.Controllers
         {
             return View();
         }
-
-        public ActionResult ShowERNotationOutput(string not, string rel)
-        {
-            ERNotationImageGenerator imageGenerator = new ERNotationImageGenerator(not, rel);
-
-            return PartialView("ERNotationOutputPartial", imageGenerator);
-        }
     }
 }

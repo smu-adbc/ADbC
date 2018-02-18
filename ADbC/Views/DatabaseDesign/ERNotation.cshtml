@@ -24,18 +24,7 @@
 </div>
 <div class="row" style="min-height: 260px;">
     <div class="col-md-offset-3  col-md-6" id="output">
-
+        <img id="diagram" class="img-responsive" style="visibility: hidden" />
     </div>
 </div>
-<script>
-    var url = '@Url.Action("ShowERNotationOutput", "DatabaseDesign")';
-    $(document).ready(function () {
-        $('#radioBox input:radio').click(function () {
-            var selNotation = $('input[name=notation]:checked').val();
-            var selRelation = $('input[name=relation]:checked').val();
-            if (selNotation.length && selRelation.length > 0) {
-                $('#output').load(url, { not: selNotation, rel: selRelation });
-            }
-        })
-    })
-</script>
+<script src="/Scripts/ERNotationImageGenerator.js"></script>
