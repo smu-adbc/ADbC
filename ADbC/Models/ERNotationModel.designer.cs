@@ -23,8 +23,8 @@ namespace ADbC.Models
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ADBC")]
-	public partial class ERNotationModelDataContext : System.Data.Linq.DataContext
-	{
+	public partial class ERNotationModelDataContext : ModuleBaseModelDataContext
+    {
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		

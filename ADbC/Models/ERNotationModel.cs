@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ADbC.Models
 {
-    public partial class ERNotationModelDataContext
+    public partial class ERNotationModelDataContext : ModuleBaseModelDataContext
     {
         public List<keysERNotation> NotationList;
         public List<keysERRelationship> RelationshipList;

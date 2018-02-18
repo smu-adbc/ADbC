@@ -1,10 +1,63 @@
-﻿@{
+﻿@model ADbC.Models.ModuleBaseModelDataContext
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="body-content">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        @RenderBody()
+        <div class="row">
+            <h2>@Model.module.ModuleName
+                @if (Model.module.HasIntroModal) {<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#introModal" style="float: right; margin-bottom:inherit">Introduction</button>}
+            </h2>
+        </div>
+        <hr />
+        <div>
+            @RenderBody()
+        </div>
     </div>
 </div>
+@if (Model.module.HasIntroModal)
+{
+<div class="modal modal fade" id="introModal" role="contentinfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>@Model.module.ModuleName</h4>
+            </div>
+            <div class="modal-body">
+                <div id="accordion" class="panel-group">
+                    @foreach (ADbC.Models.keysModuleIntroSection currentSection in Model.sections)
+                    {
+                        string id = "collapse" + currentSection.SectionOrder;
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#@id">@currentSection.SectionTitle</a>
+                                </h4>
+                            </div>
+                            <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
+                                    <div class="panel-body">
+                                        @foreach (ADbC.Models.keysModuleIntroContent currentContent in Model.contents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
+                                        {
+                                            if (currentContent.IsImage)
+                                            {
+                                                <img class="img-responsive img-intro" src="@currentContent.Content"/>
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(currentContent.Content)</p>
+                                            }
+                                        }
+                                    </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
 
 

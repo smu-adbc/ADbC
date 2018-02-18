@@ -17,6 +17,10 @@
     white-space: normal;
 }
 
+.img-intro {
+    margin: 0 auto 16px auto;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

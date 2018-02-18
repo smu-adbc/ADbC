@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ADBC" Class="ModuleBaseModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.cnsnw6nms18l.us-west-2.rds.amazonaws.com,1433;Initial Catalog=ADBC;Integrated Security=False;Persist Security Info=True;User ID=jsand;MultipleActiveResultSets=True;Application Name=EntityFramework;Context Connection=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ADBCConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.keysModuleIntroSection" Member="keysModuleIntroSections">
+    <Type Name="keysModuleIntroSection" Id="ID2">
+      <Column Name="ModuleIntroSectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SectionTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SectionOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OpenOnStart" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="keysModuleIntroSection_keysModuleIntroContent" Member="keysModuleIntroContents" ThisKey="ModuleIntroSectionID" OtherKey="ModuleIntroSectionID" Type="keysModuleIntroContent" />
+      <Association Name="keysModule_keysModuleIntroSection" Member="keysModule" ThisKey="ModuleID" OtherKey="ModuleID" Type="keysModule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.keysModule" Member="keysModules">
+    <Type Name="keysModule" Id="ID1">
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HasIntroModal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="keysModule_keysModuleIntroSection" Member="keysModuleIntroSections" ThisKey="ModuleID" OtherKey="ModuleID" Type="keysModuleIntroSection" />
+    </Type>
+  </Table>
+  <Table Name="dbo.keysModuleIntroContent" Member="keysModuleIntroContents">
+    <Type Name="keysModuleIntroContent" Id="ID3">
+      <Column Name="ModuleIntroContentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleIntroSectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="keysModuleIntroSection_keysModuleIntroContent" Member="keysModuleIntroSection" ThisKey="ModuleIntroSectionID" OtherKey="ModuleIntroSectionID" Type="keysModuleIntroSection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SelectModuleByName" Method="SelectModuleByName">
+    <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(1)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.SelectModuleIntroSectionsByModuleID" Method="SelectModuleIntroSectionsByModuleID">
+    <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID2" />
+  </Function>
+  <Function Name="dbo.SelectModuleIntroContentByModuleID" Method="SelectModuleIntroContentByModuleID">
+    <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID3" />
+  </Function>
+</Database>

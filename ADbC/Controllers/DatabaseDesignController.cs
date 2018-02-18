@@ -13,6 +13,11 @@ namespace ADbC.Controllers
         {
             ERNotationModelDataContext ERdc = new ERNotationModelDataContext();
             ERdc.ObjectTrackingEnabled = false;
+
+            ERdc.module = ERdc.SelectModuleByName("ER Notation").ToList().First();
+            ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
+            ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
             ERdc.NotationList = ERdc.SelectERNotations().ToList();
             ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
 
