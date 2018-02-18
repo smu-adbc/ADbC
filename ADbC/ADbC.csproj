@@ -72,7 +72,9 @@
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
@@ -175,6 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ERMultipleChoiceModel.cs">
+      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModuleBaseModel.cs">
       <DependentUpon>ModuleBaseModel.dbml</DependentUpon>
     </Compile>
@@ -191,6 +196,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ERNotationModel.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ERMultipleChoiceModel.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -243,6 +253,42 @@
     <Content Include="Content\Images\ERNotation\UMLC\incOver.PNG" />
     <Content Include="Content\Images\ERNotation\UMLC\nnBinary.PNG" />
     <Content Include="Content\Images\Logos\adbcLogo.png" />
+    <Content Include="Content\Images\Scenario To ER\autoparts\1.png" />
+    <Content Include="Content\Images\Scenario To ER\autoparts\2.png" />
+    <Content Include="Content\Images\Scenario To ER\autoparts\3.png" />
+    <Content Include="Content\Images\Scenario To ER\autoparts\4.png" />
+    <Content Include="Content\Images\Scenario To ER\dealership\1.png" />
+    <Content Include="Content\Images\Scenario To ER\dealership\2.png" />
+    <Content Include="Content\Images\Scenario To ER\dealership\3.png" />
+    <Content Include="Content\Images\Scenario To ER\dealership\4.png" />
+    <Content Include="Content\Images\Scenario To ER\employees\1.png" />
+    <Content Include="Content\Images\Scenario To ER\employees\2.png" />
+    <Content Include="Content\Images\Scenario To ER\employees\3.png" />
+    <Content Include="Content\Images\Scenario To ER\employees\4.png" />
+    <Content Include="Content\Images\Scenario To ER\orders\1.png" />
+    <Content Include="Content\Images\Scenario To ER\orders\2.png" />
+    <Content Include="Content\Images\Scenario To ER\orders\3.png" />
+    <Content Include="Content\Images\Scenario To ER\orders\4.png" />
+    <Content Include="Content\Images\Scenario To ER\phones\1.png" />
+    <Content Include="Content\Images\Scenario To ER\phones\2.png" />
+    <Content Include="Content\Images\Scenario To ER\phones\3.png" />
+    <Content Include="Content\Images\Scenario To ER\phones\4.png" />
+    <Content Include="Content\Images\Scenario To ER\prescriptions\1.png" />
+    <Content Include="Content\Images\Scenario To ER\prescriptions\2.png" />
+    <Content Include="Content\Images\Scenario To ER\prescriptions\3.png" />
+    <Content Include="Content\Images\Scenario To ER\prescriptions\4.png" />
+    <Content Include="Content\Images\Scenario To ER\referral\1.png" />
+    <Content Include="Content\Images\Scenario To ER\referral\2.png" />
+    <Content Include="Content\Images\Scenario To ER\referral\3.png" />
+    <Content Include="Content\Images\Scenario To ER\referral\4.png" />
+    <Content Include="Content\Images\Scenario To ER\suppliers\1.png" />
+    <Content Include="Content\Images\Scenario To ER\suppliers\2.png" />
+    <Content Include="Content\Images\Scenario To ER\suppliers\3.png" />
+    <Content Include="Content\Images\Scenario To ER\suppliers\4.png" />
+    <Content Include="Content\Images\Scenario To ER\university\1.png" />
+    <Content Include="Content\Images\Scenario To ER\university\2.png" />
+    <Content Include="Content\Images\Scenario To ER\university\3.png" />
+    <Content Include="Content\Images\Scenario To ER\university\4.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,6 +326,14 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Models\ERMultipleChoiceModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ERMultipleChoiceModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\ERMultipleChoiceModel.dbml.layout">
+      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -348,6 +402,7 @@
     <Content Include="Views\Security\SQLInjection.cshtml" />
     <Content Include="Views\Security\DatabaseInference.cshtml" />
     <Content Include="Views\Security\DatabaseAuditing.cshtml" />
+    <Content Include="Views\DatabaseDesign\ERMultipleChoicePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

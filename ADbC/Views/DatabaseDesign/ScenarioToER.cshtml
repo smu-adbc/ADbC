@@ -1,8 +1,11 @@
-﻿
+﻿@model ADbC.Models.ERMultipleChoiceModelDataContext
+
 @{
     ViewBag.Title = "ScenarioToERView";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Module.cshtml";
 }
 
-<h2>ScenarioToERView</h2>
+<div>
+    @{Html.RenderPartial("ERMultipleChoicePartialView", @Model);}
+</div>
 
