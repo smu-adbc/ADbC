@@ -2,32 +2,54 @@
 
 <div class="row">
     <h4>
-        @Model.Question.DescriptionLong;
+        @Model.Question.DescriptionLong
     </h4>
 </div>
-<div class="row">
-    <div class="col-md-offset-1 col-md-5">
-        <span>
-            <img class="img-responsive" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/1.png" />
-        </span>
+<div id="answers" data-question="@Model.Question.DescriptionShort">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-5">
+            <span>
+                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/1.png" />
+            </span>
+            <div class="row text-center">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer1">Select Diagram 1</button>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <span>
+                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/2.png" />
+            </span>
+            <div class="row text-center">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer2">Select Diagram 1</button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-5">
-        <span>
-            <img class="img-responsive" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/2.png" />
-        </span>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-5">
+            <span>
+                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/3.png" />
+            </span>
+            <div class="row text-center">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer3">Select Diagram 1</button>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <span>
+                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/4.png" />
+            </span>
+            <div class="row text-center">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer4">Select Diagram 1</button>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-offset-1 col-md-5">
-        <span>
-            <img class="img-responsive" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/3.png" />
-        </span>
-    </div>
-    <div class="col-md-5">
-        <span>
-            <img class="img-responsive" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/4.png" />
-        </span>
-    </div>
-</div>
+
+<script src="/Scripts/MultipleChoice.js"></script>
+
+@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[0]);}
+@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[1]);}
+@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[2]);}
+@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[3]);}
+
 
 

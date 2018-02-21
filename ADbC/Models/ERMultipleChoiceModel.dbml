@@ -27,4 +27,8 @@
     <Parameter Name="DescriptionShort" Parameter="descriptionShort" Type="System.String" DbType="VarChar(1)" />
     <ElementType IdRef="ID2" />
   </Function>
+  <Function Name="dbo.SelectERQuestionsByModuleName" Method="SelectERQuestionsByModuleName">
+    <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(50)" />
+    <ElementType IdRef="ID2" />
+  </Function>
 </Database>

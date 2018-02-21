@@ -1,0 +1,9 @@
+﻿@model ADbC.Models.ERMultipleChoiceModelDataContext
+
+<div class="row" id="questionButtons">
+    @foreach (ADbC.Models.keysERQuestion q in Model.MenuQuestions)
+    {
+        <button type="button" class="btn btn-primary" value="@q.DescriptionShort">@q.Title</button>
+    }
+</div>
+

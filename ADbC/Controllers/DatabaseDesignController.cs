@@ -11,32 +11,60 @@ namespace ADbC.Controllers
     {
         public ActionResult ERNotation()
         {
-            ERNotationModelDataContext ERdc = new ERNotationModelDataContext();
-            ERdc.ObjectTrackingEnabled = false;
+            using (ERNotationModelDataContext ERdc = new ERNotationModelDataContext())
+            {
+                ERdc.ObjectTrackingEnabled = false;
 
-            ERdc.module = ERdc.SelectModuleByName("ER Notation").ToList().First();
-            ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
-            ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                ERdc.module = ERdc.SelectModuleByName("ER Notation").ToList().First();
+                ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
 
-            ERdc.NotationList = ERdc.SelectERNotations().ToList();
-            ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
+                ERdc.NotationList = ERdc.SelectERNotations().ToList();
+                ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
 
-            return View(ERdc);
+                return View(ERdc);
+            }                
         }
 
         public ActionResult ScenarioToER()
         {
-            ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext();
-            MCdc.ObjectTrackingEnabled = false;
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
 
-            MCdc.module = MCdc.SelectModuleByName("Scenario To ER").ToList().First();
-            MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-            MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MCdc.MenuQuestions = MCdc.SelectERQuestionsByModuleName("Scenario To ER").OrderBy(x => x.ERQuestionID).ToList();
 
-            MCdc.Question = MCdc.SelectERQuestionByDescShort("employees").ToList().First();
-            MCdc.Answers = MCdc.SelectERAnswersByQuestionID(MCdc.Question.ERQuestionID).ToList();
+                MCdc.module = MCdc.SelectModuleByName("Scenario To ER").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
 
-            return View(MCdc);
+                return View(MCdc);
+            }            
+        }
+
+        public PartialViewResult GetERMultipleChoiceQuestion(string shortDescription)
+        {
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.Question = MCdc.SelectERQuestionByDescShort(shortDescription).ToList().First();
+                MCdc.Answers = MCdc.SelectERAnswersByQuestionID(MCdc.Question.ERQuestionID).ToList();
+
+                return PartialView("/Views/DatabaseDesign/ERMultipleChoicePartialView.cshtml", MCdc);
+            }
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult ERMultipleChoiceResultModal(string descShort, int relativeAnswerID)
+        {
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                MCdc.Question = MCdc.SelectERQuestionByDescShort(descShort).ToList().First();
+                keysERAnswer answer = MCdc.SelectERAnswersByQuestionID(MCdc.Question.ERQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
+
+                return PartialView("/Views/DatabaseDesign/ERMultipleChoiceResultModal", answer);
+            }
         }
 
         public ActionResult ERToTables()

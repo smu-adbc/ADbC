@@ -14,7 +14,7 @@
         <elementListCompartment Id="cd169c72-6e82-4872-b293-dc1c9e88024f" absoluteBounds="0.765, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.78929768880208); (3.5 : 1.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.78929768880208); (3.5 : 1.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERMultipleChoiceModelDataContext/keysERQuestion/keysERQuestion_keysERAnswer" />
       <nodes>
         <classShapeMoniker Id="dbd03376-2c2d-40e8-97e3-f5509684a8c3" />

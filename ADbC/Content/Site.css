@@ -21,6 +21,12 @@
     margin: 0 auto 16px auto;
 }
 
+.img-mcanswer {
+    padding: 10px;
+    border: 1px solid darkgrey;
+    margin: 10px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

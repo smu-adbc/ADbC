@@ -97,6 +97,13 @@ namespace ADbC.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), descriptionShort);
 			return ((ISingleResult<keysERQuestion>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERQuestionsByModuleName")]
+		public ISingleResult<keysERQuestion> SelectERQuestionsByModuleName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(50)")] string moduleName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleName);
+			return ((ISingleResult<keysERQuestion>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysERAnswer")]

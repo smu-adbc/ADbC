@@ -7,7 +7,9 @@ namespace ADbC.Models
 {
     public partial class ERMultipleChoiceModelDataContext : ModuleBaseModelDataContext
     {
-        public keysERQuestion Question;
+        public List<keysERQuestion> MenuQuestions;
+
+        public keysERQuestion Question;        
         public List<keysERAnswer> Answers;
     }
 }
