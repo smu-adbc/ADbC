@@ -1,4 +1,4 @@
-﻿@model ADbC.Models.keysERAnswer
+﻿@model ADbC.Models.MCAnswer
 
 <div class="modal modal fade" id="answer@(Model.RelativeAnswerID)" role="contentinfo">
     <div class="modal-dialog">
@@ -6,10 +6,10 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 @{var result = @Model.Correct ? "Correct" : "Incorrect";}
-                <h4>@result.ToString()</h4>
+                <h3>@result.ToString()</h3>
             </div>
             <div class="modal-body">
-                @Model.DialogText
+                <h4>@Model.DialogText</h4>
             </div>
         </div>
     </div>

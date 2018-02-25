@@ -7,8 +7,8 @@ namespace ADbC.Models
 {
     public partial class ModuleBaseModelDataContext : System.Data.Linq.DataContext
     {
-        public keysModule module;
-        public List<keysModuleIntroSection> sections;
-        public List<keysModuleIntroContent> contents;
+        public Module module;
+        public List<ModuleIntroSection> sections;
+        public List<ModuleIntroContent> contents;
     }
 }

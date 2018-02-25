@@ -22,24 +22,24 @@ namespace ADbC.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ADBC")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="adbc")]
 	public partial class ERNotationModelDataContext : ModuleBaseModelDataContext
-    {
+	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertkeysERNotation(keysERNotation instance);
-    partial void UpdatekeysERNotation(keysERNotation instance);
-    partial void DeletekeysERNotation(keysERNotation instance);
-    partial void InsertkeysERRelationship(keysERRelationship instance);
-    partial void UpdatekeysERRelationship(keysERRelationship instance);
-    partial void DeletekeysERRelationship(keysERRelationship instance);
+    partial void InsertERRelationship(ERRelationship instance);
+    partial void UpdateERRelationship(ERRelationship instance);
+    partial void DeleteERRelationship(ERRelationship instance);
+    partial void InsertERNotation(ERNotation instance);
+    partial void UpdateERNotation(ERNotation instance);
+    partial void DeleteERNotation(ERNotation instance);
     #endregion
 		
 		public ERNotationModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ADBCConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -68,149 +68,39 @@ namespace ADbC.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<keysERNotation> keysERNotations
+		public System.Data.Linq.Table<ERRelationship> ERRelationships
 		{
 			get
 			{
-				return this.GetTable<keysERNotation>();
+				return this.GetTable<ERRelationship>();
 			}
 		}
 		
-		public System.Data.Linq.Table<keysERRelationship> keysERRelationships
+		public System.Data.Linq.Table<ERNotation> ERNotations
 		{
 			get
 			{
-				return this.GetTable<keysERRelationship>();
+				return this.GetTable<ERNotation>();
 			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERNotations")]
-		public ISingleResult<keysERNotation> SelectERNotations()
+		public ISingleResult<ERNotation> SelectERNotations()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<keysERNotation>)(result.ReturnValue));
+			return ((ISingleResult<ERNotation>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERRelationships")]
-		public ISingleResult<keysERRelationship> SelectERRelationships()
+		public ISingleResult<ERRelationship> SelectERRelationships()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<keysERRelationship>)(result.ReturnValue));
+			return ((ISingleResult<ERRelationship>)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysERNotation")]
-	public partial class keysERNotation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ERNotationID;
-		
-		private string _DescriptionShort;
-		
-		private string _DescriptionLong;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnERNotationIDChanging(int value);
-    partial void OnERNotationIDChanged();
-    partial void OnDescriptionShortChanging(string value);
-    partial void OnDescriptionShortChanged();
-    partial void OnDescriptionLongChanging(string value);
-    partial void OnDescriptionLongChanged();
-    #endregion
-		
-		public keysERNotation()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ERNotationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ERNotationID
-		{
-			get
-			{
-				return this._ERNotationID;
-			}
-			set
-			{
-				if ((this._ERNotationID != value))
-				{
-					this.OnERNotationIDChanging(value);
-					this.SendPropertyChanging();
-					this._ERNotationID = value;
-					this.SendPropertyChanged("ERNotationID");
-					this.OnERNotationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string DescriptionShort
-		{
-			get
-			{
-				return this._DescriptionShort;
-			}
-			set
-			{
-				if ((this._DescriptionShort != value))
-				{
-					this.OnDescriptionShortChanging(value);
-					this.SendPropertyChanging();
-					this._DescriptionShort = value;
-					this.SendPropertyChanged("DescriptionShort");
-					this.OnDescriptionShortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string DescriptionLong
-		{
-			get
-			{
-				return this._DescriptionLong;
-			}
-			set
-			{
-				if ((this._DescriptionLong != value))
-				{
-					this.OnDescriptionLongChanging(value);
-					this.SendPropertyChanging();
-					this._DescriptionLong = value;
-					this.SendPropertyChanged("DescriptionLong");
-					this.OnDescriptionLongChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysERRelationship")]
-	public partial class keysERRelationship : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ERRelationship")]
+	public partial class ERRelationship : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -233,7 +123,7 @@ namespace ADbC.Models
     partial void OnDescriptionLongChanged();
     #endregion
 		
-		public keysERRelationship()
+		public ERRelationship()
 		{
 			OnCreated();
 		}
@@ -279,6 +169,116 @@ namespace ADbC.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string DescriptionLong
+		{
+			get
+			{
+				return this._DescriptionLong;
+			}
+			set
+			{
+				if ((this._DescriptionLong != value))
+				{
+					this.OnDescriptionLongChanging(value);
+					this.SendPropertyChanging();
+					this._DescriptionLong = value;
+					this.SendPropertyChanged("DescriptionLong");
+					this.OnDescriptionLongChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ERNotation")]
+	public partial class ERNotation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ERNotationID;
+		
+		private string _DescriptionShort;
+		
+		private string _DescriptionLong;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnERNotationIDChanging(int value);
+    partial void OnERNotationIDChanged();
+    partial void OnDescriptionShortChanging(string value);
+    partial void OnDescriptionShortChanged();
+    partial void OnDescriptionLongChanging(string value);
+    partial void OnDescriptionLongChanged();
+    #endregion
+		
+		public ERNotation()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ERNotationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ERNotationID
+		{
+			get
+			{
+				return this._ERNotationID;
+			}
+			set
+			{
+				if ((this._ERNotationID != value))
+				{
+					this.OnERNotationIDChanging(value);
+					this.SendPropertyChanging();
+					this._ERNotationID = value;
+					this.SendPropertyChanged("ERNotationID");
+					this.OnERNotationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string DescriptionShort
+		{
+			get
+			{
+				return this._DescriptionShort;
+			}
+			set
+			{
+				if ((this._DescriptionShort != value))
+				{
+					this.OnDescriptionShortChanging(value);
+					this.SendPropertyChanging();
+					this._DescriptionShort = value;
+					this.SendPropertyChanged("DescriptionShort");
+					this.OnDescriptionShortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string DescriptionLong
 		{
 			get

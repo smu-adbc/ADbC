@@ -27,7 +27,7 @@
             </div>
             <div class="modal-body">
                 <div id="accordion" class="panel-group">
-                    @foreach (ADbC.Models.keysModuleIntroSection currentSection in Model.sections)
+                    @foreach (ADbC.Models.ModuleIntroSection currentSection in Model.sections)
                     {
                         string id = "collapse" + currentSection.SectionOrder;
                         <div class="panel panel-default">
@@ -38,7 +38,7 @@
                             </div>
                             <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
                                     <div class="panel-body">
-                                        @foreach (ADbC.Models.keysModuleIntroContent currentContent in Model.contents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
+                                        @foreach (ADbC.Models.ModuleIntroContent currentContent in Model.contents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
                                         {
                                             if (currentContent.IsImage)
                                             {

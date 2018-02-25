@@ -1,14 +1,14 @@
 ﻿USE adbc;
 
-DROP TABLE IF EXISTS keysERRelationship;
+DROP TABLE IF EXISTS ERRelationship;
 
-CREATE TABLE keysERRelationship(
+CREATE TABLE ERRelationship(
 	ERRelationshipID int not null identity primary key,
 	DescriptionShort varchar(10) not null,
 	DescriptionLong varchar(30) not null
 );
 
-INSERT INTO keysERRelationship (DescriptionShort, DescriptionLong)
+INSERT INTO ERRelationship (DescriptionShort, DescriptionLong)
 	VALUES 
 		('1nBinaryNI', '1-N Binary, Non-identifying'),
 		('1nBinaryID', '1-N Binary, Identifying'),

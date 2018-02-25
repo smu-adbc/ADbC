@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-5">
             <span>
-                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/1.png" />
+                <img id="Diagram 1" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/1.png" />
             </span>
             <div class="row text-center">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer1">Select Diagram 1</button>
@@ -17,34 +17,43 @@
         </div>
         <div class="col-md-5">
             <span>
-                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/2.png" />
+                <img id="Diagram 2" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/2.png" />
             </span>
             <div class="row text-center">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer2">Select Diagram 1</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer2">Select Diagram 2</button>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-offset-1 col-md-5">
             <span>
-                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/3.png" />
+                <img id="Diagram 3" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/3.png" />
             </span>
             <div class="row text-center">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer3">Select Diagram 1</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer3">Select Diagram 3</button>
             </div>
         </div>
         <div class="col-md-5">
             <span>
-                <img class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/4.png" />
+                <img id="Diagram 4" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/4.png" />
             </span>
             <div class="row text-center">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer4">Select Diagram 1</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer4">Select Diagram 4</button>
             </div>
         </div>
     </div>
 </div>
-
-<script src="/Scripts/MultipleChoice.js"></script>
+<div class="modal modal fade" id="imageView">
+    <div class="modal-dialog" style="min-width:50%; height:auto;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="img-responsive" id="answerImage" src="http://via.placeholder.com/350x150" style="margin:0px auto"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/MCImageViewer.js"></script>
 
 @{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[0]);}
 @{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[1]);}

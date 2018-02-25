@@ -1,34 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ADBC" Class="ERMultipleChoiceModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.cnsnw6nms18l.us-west-2.rds.amazonaws.com,1433;Initial Catalog=ADBC;Integrated Security=False;Persist Security Info=True;User ID=jsand;MultipleActiveResultSets=True;Application Name=EntityFramework;Context Connection=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ADBCConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.keysERAnswer" Member="keysERAnswers">
-    <Type Name="keysERAnswer" Id="ID1">
-      <Column Name="ERAnswerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adbc" Class="ERMultipleChoiceModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.csntfunmwnnr.us-west-2.rds.amazonaws.com,1433;Initial Catalog=adbc;Persist Security Info=True;User ID=adbcadmin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="adbcConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MCAnswer" Member="MCAnswers">
+    <Type Name="MCAnswer" Id="ID1">
+      <Column Name="MCAnswerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RelativeAnswerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Correct" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="DialogText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="keysERQuestion_keysERAnswer" Member="keysERQuestion" ThisKey="QuestionID" OtherKey="ERQuestionID" Type="keysERQuestion" IsForeignKey="true" />
+      <Column Name="ResponseText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="MCQuestion_MCAnswer" Member="MCQuestion" ThisKey="QuestionID" OtherKey="MCQuestionID" Type="MCQuestion" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.keysERQuestion" Member="keysERQuestions">
-    <Type Name="keysERQuestion" Id="ID2">
-      <Column Name="ERQuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.MCQuestion" Member="MCQuestions">
+    <Type Name="MCQuestion" Id="ID2">
+      <Column Name="MCQuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="keysERQuestion_keysERAnswer" Member="keysERAnswers" ThisKey="ERQuestionID" OtherKey="QuestionID" Type="keysERAnswer" />
+      <Association Name="MCQuestion_MCAnswer" Member="MCAnswers" ThisKey="MCQuestionID" OtherKey="QuestionID" Type="MCAnswer" />
     </Type>
   </Table>
-  <Function Name="dbo.SelectERAnswersByQuestionID" Method="SelectERAnswersByQuestionID">
+  <Function Name="dbo.SelectMCAnswersByQuestionID" Method="SelectMCAnswersByQuestionID">
     <Parameter Name="ERQuestionID" Parameter="eRQuestionID" Type="System.Int32" DbType="Int" />
     <ElementType IdRef="ID1" />
   </Function>
-  <Function Name="dbo.SelectERQuestionByDescShort" Method="SelectERQuestionByDescShort">
-    <Parameter Name="DescriptionShort" Parameter="descriptionShort" Type="System.String" DbType="VarChar(1)" />
+  <Function Name="dbo.SelectMCQuestionsByModuleName" Method="SelectMCQuestionsByModuleName">
+    <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(50)" />
     <ElementType IdRef="ID2" />
   </Function>
-  <Function Name="dbo.SelectERQuestionsByModuleName" Method="SelectERQuestionsByModuleName">
-    <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(50)" />
+  <Function Name="dbo.SelectMCQuestionByDescShort" Method="SelectMCQuestionByDescShort">
+    <Parameter Name="DescriptionShort" Parameter="descriptionShort" Type="System.String" DbType="VarChar(50)" />
     <ElementType IdRef="ID2" />
   </Function>
 </Database>

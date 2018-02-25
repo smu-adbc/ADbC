@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ADBC" Class="ERNotationModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.cnsnw6nms18l.us-west-2.rds.amazonaws.com,1433;Initial Catalog=ADBC;Integrated Security=False;Persist Security Info=True;User ID=jsand;MultipleActiveResultSets=True;Application Name=EntityFramework;Context Connection=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ADBCConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.keysERNotation" Member="keysERNotations">
-    <Type Name="keysERNotation" Id="ID1">
-      <Column Name="ERNotationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.keysERRelationship" Member="keysERRelationships">
-    <Type Name="keysERRelationship" Id="ID2">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adbc" Class="ERNotationModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.csntfunmwnnr.us-west-2.rds.amazonaws.com,1433;Initial Catalog=adbc;Persist Security Info=True;User ID=adbcadmin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="adbcConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ERRelationship" Member="ERRelationships">
+    <Type Name="ERRelationship" Id="ID2">
       <Column Name="ERRelationshipID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ERNotation" Member="ERNotations">
+    <Type Name="ERNotation" Id="ID1">
+      <Column Name="ERNotationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.SelectERNotations" Method="SelectERNotations">

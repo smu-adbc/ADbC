@@ -22,7 +22,7 @@ namespace ADbC.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ADBC")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="adbc")]
 	public partial class ModuleBaseModelDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,19 +30,19 @@ namespace ADbC.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertkeysModuleIntroSection(keysModuleIntroSection instance);
-    partial void UpdatekeysModuleIntroSection(keysModuleIntroSection instance);
-    partial void DeletekeysModuleIntroSection(keysModuleIntroSection instance);
-    partial void InsertkeysModule(keysModule instance);
-    partial void UpdatekeysModule(keysModule instance);
-    partial void DeletekeysModule(keysModule instance);
-    partial void InsertkeysModuleIntroContent(keysModuleIntroContent instance);
-    partial void UpdatekeysModuleIntroContent(keysModuleIntroContent instance);
-    partial void DeletekeysModuleIntroContent(keysModuleIntroContent instance);
+    partial void InsertModule(Module instance);
+    partial void UpdateModule(Module instance);
+    partial void DeleteModule(Module instance);
+    partial void InsertModuleIntroContent(ModuleIntroContent instance);
+    partial void UpdateModuleIntroContent(ModuleIntroContent instance);
+    partial void DeleteModuleIntroContent(ModuleIntroContent instance);
+    partial void InsertModuleIntroSection(ModuleIntroSection instance);
+    partial void UpdateModuleIntroSection(ModuleIntroSection instance);
+    partial void DeleteModuleIntroSection(ModuleIntroSection instance);
     #endregion
 		
 		public ModuleBaseModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ADBCConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,281 +71,54 @@ namespace ADbC.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<keysModuleIntroSection> keysModuleIntroSections
+		public System.Data.Linq.Table<Module> Modules
 		{
 			get
 			{
-				return this.GetTable<keysModuleIntroSection>();
+				return this.GetTable<Module>();
 			}
 		}
 		
-		public System.Data.Linq.Table<keysModule> keysModules
+		public System.Data.Linq.Table<ModuleIntroContent> ModuleIntroContents
 		{
 			get
 			{
-				return this.GetTable<keysModule>();
+				return this.GetTable<ModuleIntroContent>();
 			}
 		}
 		
-		public System.Data.Linq.Table<keysModuleIntroContent> keysModuleIntroContents
+		public System.Data.Linq.Table<ModuleIntroSection> ModuleIntroSections
 		{
 			get
 			{
-				return this.GetTable<keysModuleIntroContent>();
+				return this.GetTable<ModuleIntroSection>();
 			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleByName")]
-		public ISingleResult<keysModule> SelectModuleByName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(1)")] string moduleName)
+		public ISingleResult<Module> SelectModuleByName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(1)")] string moduleName)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleName);
-			return ((ISingleResult<keysModule>)(result.ReturnValue));
+			return ((ISingleResult<Module>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleIntroSectionsByModuleID")]
-		public ISingleResult<keysModuleIntroSection> SelectModuleIntroSectionsByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
+		public ISingleResult<ModuleIntroSection> SelectModuleIntroSectionsByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
-			return ((ISingleResult<keysModuleIntroSection>)(result.ReturnValue));
+			return ((ISingleResult<ModuleIntroSection>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleIntroContentByModuleID")]
-		public ISingleResult<keysModuleIntroContent> SelectModuleIntroContentByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
+		public ISingleResult<ModuleIntroContent> SelectModuleIntroContentByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
-			return ((ISingleResult<keysModuleIntroContent>)(result.ReturnValue));
+			return ((ISingleResult<ModuleIntroContent>)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysModuleIntroSection")]
-	public partial class keysModuleIntroSection : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ModuleIntroSectionID;
-		
-		private int _ModuleID;
-		
-		private string _SectionTitle;
-		
-		private int _SectionOrder;
-		
-		private bool _OpenOnStart;
-		
-		private EntitySet<keysModuleIntroContent> _keysModuleIntroContents;
-		
-		private EntityRef<keysModule> _keysModule;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnModuleIntroSectionIDChanging(int value);
-    partial void OnModuleIntroSectionIDChanged();
-    partial void OnModuleIDChanging(int value);
-    partial void OnModuleIDChanged();
-    partial void OnSectionTitleChanging(string value);
-    partial void OnSectionTitleChanged();
-    partial void OnSectionOrderChanging(int value);
-    partial void OnSectionOrderChanged();
-    partial void OnOpenOnStartChanging(bool value);
-    partial void OnOpenOnStartChanged();
-    #endregion
-		
-		public keysModuleIntroSection()
-		{
-			this._keysModuleIntroContents = new EntitySet<keysModuleIntroContent>(new Action<keysModuleIntroContent>(this.attach_keysModuleIntroContents), new Action<keysModuleIntroContent>(this.detach_keysModuleIntroContents));
-			this._keysModule = default(EntityRef<keysModule>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleIntroSectionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ModuleIntroSectionID
-		{
-			get
-			{
-				return this._ModuleIntroSectionID;
-			}
-			set
-			{
-				if ((this._ModuleIntroSectionID != value))
-				{
-					this.OnModuleIntroSectionIDChanging(value);
-					this.SendPropertyChanging();
-					this._ModuleIntroSectionID = value;
-					this.SendPropertyChanged("ModuleIntroSectionID");
-					this.OnModuleIntroSectionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleID", DbType="Int NOT NULL")]
-		public int ModuleID
-		{
-			get
-			{
-				return this._ModuleID;
-			}
-			set
-			{
-				if ((this._ModuleID != value))
-				{
-					if (this._keysModule.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnModuleIDChanging(value);
-					this.SendPropertyChanging();
-					this._ModuleID = value;
-					this.SendPropertyChanged("ModuleID");
-					this.OnModuleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string SectionTitle
-		{
-			get
-			{
-				return this._SectionTitle;
-			}
-			set
-			{
-				if ((this._SectionTitle != value))
-				{
-					this.OnSectionTitleChanging(value);
-					this.SendPropertyChanging();
-					this._SectionTitle = value;
-					this.SendPropertyChanged("SectionTitle");
-					this.OnSectionTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionOrder", DbType="Int NOT NULL")]
-		public int SectionOrder
-		{
-			get
-			{
-				return this._SectionOrder;
-			}
-			set
-			{
-				if ((this._SectionOrder != value))
-				{
-					this.OnSectionOrderChanging(value);
-					this.SendPropertyChanging();
-					this._SectionOrder = value;
-					this.SendPropertyChanged("SectionOrder");
-					this.OnSectionOrderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OpenOnStart", DbType="Bit NOT NULL")]
-		public bool OpenOnStart
-		{
-			get
-			{
-				return this._OpenOnStart;
-			}
-			set
-			{
-				if ((this._OpenOnStart != value))
-				{
-					this.OnOpenOnStartChanging(value);
-					this.SendPropertyChanging();
-					this._OpenOnStart = value;
-					this.SendPropertyChanged("OpenOnStart");
-					this.OnOpenOnStartChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysModuleIntroSection_keysModuleIntroContent", Storage="_keysModuleIntroContents", ThisKey="ModuleIntroSectionID", OtherKey="ModuleIntroSectionID")]
-		public EntitySet<keysModuleIntroContent> keysModuleIntroContents
-		{
-			get
-			{
-				return this._keysModuleIntroContents;
-			}
-			set
-			{
-				this._keysModuleIntroContents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysModule_keysModuleIntroSection", Storage="_keysModule", ThisKey="ModuleID", OtherKey="ModuleID", IsForeignKey=true)]
-		public keysModule keysModule
-		{
-			get
-			{
-				return this._keysModule.Entity;
-			}
-			set
-			{
-				keysModule previousValue = this._keysModule.Entity;
-				if (((previousValue != value) 
-							|| (this._keysModule.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._keysModule.Entity = null;
-						previousValue.keysModuleIntroSections.Remove(this);
-					}
-					this._keysModule.Entity = value;
-					if ((value != null))
-					{
-						value.keysModuleIntroSections.Add(this);
-						this._ModuleID = value.ModuleID;
-					}
-					else
-					{
-						this._ModuleID = default(int);
-					}
-					this.SendPropertyChanged("keysModule");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_keysModuleIntroContents(keysModuleIntroContent entity)
-		{
-			this.SendPropertyChanging();
-			entity.keysModuleIntroSection = this;
-		}
-		
-		private void detach_keysModuleIntroContents(keysModuleIntroContent entity)
-		{
-			this.SendPropertyChanging();
-			entity.keysModuleIntroSection = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysModule")]
-	public partial class keysModule : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Module")]
+	public partial class Module : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -356,7 +129,7 @@ namespace ADbC.Models
 		
 		private bool _HasIntroModal;
 		
-		private EntitySet<keysModuleIntroSection> _keysModuleIntroSections;
+		private EntitySet<ModuleIntroSection> _ModuleIntroSections;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -370,9 +143,9 @@ namespace ADbC.Models
     partial void OnHasIntroModalChanged();
     #endregion
 		
-		public keysModule()
+		public Module()
 		{
-			this._keysModuleIntroSections = new EntitySet<keysModuleIntroSection>(new Action<keysModuleIntroSection>(this.attach_keysModuleIntroSections), new Action<keysModuleIntroSection>(this.detach_keysModuleIntroSections));
+			this._ModuleIntroSections = new EntitySet<ModuleIntroSection>(new Action<ModuleIntroSection>(this.attach_ModuleIntroSections), new Action<ModuleIntroSection>(this.detach_ModuleIntroSections));
 			OnCreated();
 		}
 		
@@ -436,16 +209,16 @@ namespace ADbC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysModule_keysModuleIntroSection", Storage="_keysModuleIntroSections", ThisKey="ModuleID", OtherKey="ModuleID")]
-		public EntitySet<keysModuleIntroSection> keysModuleIntroSections
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Module_ModuleIntroSection", Storage="_ModuleIntroSections", ThisKey="ModuleID", OtherKey="ModuleID")]
+		public EntitySet<ModuleIntroSection> ModuleIntroSections
 		{
 			get
 			{
-				return this._keysModuleIntroSections;
+				return this._ModuleIntroSections;
 			}
 			set
 			{
-				this._keysModuleIntroSections.Assign(value);
+				this._ModuleIntroSections.Assign(value);
 			}
 		}
 		
@@ -469,21 +242,21 @@ namespace ADbC.Models
 			}
 		}
 		
-		private void attach_keysModuleIntroSections(keysModuleIntroSection entity)
+		private void attach_ModuleIntroSections(ModuleIntroSection entity)
 		{
 			this.SendPropertyChanging();
-			entity.keysModule = this;
+			entity.Module = this;
 		}
 		
-		private void detach_keysModuleIntroSections(keysModuleIntroSection entity)
+		private void detach_ModuleIntroSections(ModuleIntroSection entity)
 		{
 			this.SendPropertyChanging();
-			entity.keysModule = null;
+			entity.Module = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysModuleIntroContent")]
-	public partial class keysModuleIntroContent : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModuleIntroContent")]
+	public partial class ModuleIntroContent : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -498,7 +271,7 @@ namespace ADbC.Models
 		
 		private int _ContentOrder;
 		
-		private EntityRef<keysModuleIntroSection> _keysModuleIntroSection;
+		private EntityRef<ModuleIntroSection> _ModuleIntroSection;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -516,9 +289,9 @@ namespace ADbC.Models
     partial void OnContentOrderChanged();
     #endregion
 		
-		public keysModuleIntroContent()
+		public ModuleIntroContent()
 		{
-			this._keysModuleIntroSection = default(EntityRef<keysModuleIntroSection>);
+			this._ModuleIntroSection = default(EntityRef<ModuleIntroSection>);
 			OnCreated();
 		}
 		
@@ -553,7 +326,7 @@ namespace ADbC.Models
 			{
 				if ((this._ModuleIntroSectionID != value))
 				{
-					if (this._keysModuleIntroSection.HasLoadedOrAssignedValue)
+					if (this._ModuleIntroSection.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -626,36 +399,36 @@ namespace ADbC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysModuleIntroSection_keysModuleIntroContent", Storage="_keysModuleIntroSection", ThisKey="ModuleIntroSectionID", OtherKey="ModuleIntroSectionID", IsForeignKey=true)]
-		public keysModuleIntroSection keysModuleIntroSection
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModuleIntroSection_ModuleIntroContent", Storage="_ModuleIntroSection", ThisKey="ModuleIntroSectionID", OtherKey="ModuleIntroSectionID", IsForeignKey=true)]
+		public ModuleIntroSection ModuleIntroSection
 		{
 			get
 			{
-				return this._keysModuleIntroSection.Entity;
+				return this._ModuleIntroSection.Entity;
 			}
 			set
 			{
-				keysModuleIntroSection previousValue = this._keysModuleIntroSection.Entity;
+				ModuleIntroSection previousValue = this._ModuleIntroSection.Entity;
 				if (((previousValue != value) 
-							|| (this._keysModuleIntroSection.HasLoadedOrAssignedValue == false)))
+							|| (this._ModuleIntroSection.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._keysModuleIntroSection.Entity = null;
-						previousValue.keysModuleIntroContents.Remove(this);
+						this._ModuleIntroSection.Entity = null;
+						previousValue.ModuleIntroContents.Remove(this);
 					}
-					this._keysModuleIntroSection.Entity = value;
+					this._ModuleIntroSection.Entity = value;
 					if ((value != null))
 					{
-						value.keysModuleIntroContents.Add(this);
+						value.ModuleIntroContents.Add(this);
 						this._ModuleIntroSectionID = value.ModuleIntroSectionID;
 					}
 					else
 					{
 						this._ModuleIntroSectionID = default(int);
 					}
-					this.SendPropertyChanged("keysModuleIntroSection");
+					this.SendPropertyChanged("ModuleIntroSection");
 				}
 			}
 		}
@@ -678,6 +451,233 @@ namespace ADbC.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModuleIntroSection")]
+	public partial class ModuleIntroSection : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ModuleIntroSectionID;
+		
+		private int _ModuleID;
+		
+		private string _SectionTitle;
+		
+		private int _SectionOrder;
+		
+		private bool _OpenOnStart;
+		
+		private EntitySet<ModuleIntroContent> _ModuleIntroContents;
+		
+		private EntityRef<Module> _Module;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnModuleIntroSectionIDChanging(int value);
+    partial void OnModuleIntroSectionIDChanged();
+    partial void OnModuleIDChanging(int value);
+    partial void OnModuleIDChanged();
+    partial void OnSectionTitleChanging(string value);
+    partial void OnSectionTitleChanged();
+    partial void OnSectionOrderChanging(int value);
+    partial void OnSectionOrderChanged();
+    partial void OnOpenOnStartChanging(bool value);
+    partial void OnOpenOnStartChanged();
+    #endregion
+		
+		public ModuleIntroSection()
+		{
+			this._ModuleIntroContents = new EntitySet<ModuleIntroContent>(new Action<ModuleIntroContent>(this.attach_ModuleIntroContents), new Action<ModuleIntroContent>(this.detach_ModuleIntroContents));
+			this._Module = default(EntityRef<Module>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleIntroSectionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ModuleIntroSectionID
+		{
+			get
+			{
+				return this._ModuleIntroSectionID;
+			}
+			set
+			{
+				if ((this._ModuleIntroSectionID != value))
+				{
+					this.OnModuleIntroSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleIntroSectionID = value;
+					this.SendPropertyChanged("ModuleIntroSectionID");
+					this.OnModuleIntroSectionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleID", DbType="Int NOT NULL")]
+		public int ModuleID
+		{
+			get
+			{
+				return this._ModuleID;
+			}
+			set
+			{
+				if ((this._ModuleID != value))
+				{
+					if (this._Module.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnModuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleID = value;
+					this.SendPropertyChanged("ModuleID");
+					this.OnModuleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SectionTitle
+		{
+			get
+			{
+				return this._SectionTitle;
+			}
+			set
+			{
+				if ((this._SectionTitle != value))
+				{
+					this.OnSectionTitleChanging(value);
+					this.SendPropertyChanging();
+					this._SectionTitle = value;
+					this.SendPropertyChanged("SectionTitle");
+					this.OnSectionTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionOrder", DbType="Int NOT NULL")]
+		public int SectionOrder
+		{
+			get
+			{
+				return this._SectionOrder;
+			}
+			set
+			{
+				if ((this._SectionOrder != value))
+				{
+					this.OnSectionOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SectionOrder = value;
+					this.SendPropertyChanged("SectionOrder");
+					this.OnSectionOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OpenOnStart", DbType="Bit NOT NULL")]
+		public bool OpenOnStart
+		{
+			get
+			{
+				return this._OpenOnStart;
+			}
+			set
+			{
+				if ((this._OpenOnStart != value))
+				{
+					this.OnOpenOnStartChanging(value);
+					this.SendPropertyChanging();
+					this._OpenOnStart = value;
+					this.SendPropertyChanged("OpenOnStart");
+					this.OnOpenOnStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModuleIntroSection_ModuleIntroContent", Storage="_ModuleIntroContents", ThisKey="ModuleIntroSectionID", OtherKey="ModuleIntroSectionID")]
+		public EntitySet<ModuleIntroContent> ModuleIntroContents
+		{
+			get
+			{
+				return this._ModuleIntroContents;
+			}
+			set
+			{
+				this._ModuleIntroContents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Module_ModuleIntroSection", Storage="_Module", ThisKey="ModuleID", OtherKey="ModuleID", IsForeignKey=true)]
+		public Module Module
+		{
+			get
+			{
+				return this._Module.Entity;
+			}
+			set
+			{
+				Module previousValue = this._Module.Entity;
+				if (((previousValue != value) 
+							|| (this._Module.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Module.Entity = null;
+						previousValue.ModuleIntroSections.Remove(this);
+					}
+					this._Module.Entity = value;
+					if ((value != null))
+					{
+						value.ModuleIntroSections.Add(this);
+						this._ModuleID = value.ModuleID;
+					}
+					else
+					{
+						this._ModuleID = default(int);
+					}
+					this.SendPropertyChanged("Module");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ModuleIntroContents(ModuleIntroContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModuleIntroSection = this;
+		}
+		
+		private void detach_ModuleIntroContents(ModuleIntroContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModuleIntroSection = null;
 		}
 	}
 }

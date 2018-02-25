@@ -8,7 +8,7 @@
     <div class="col-md-offset-3 col-md-3 col-xs-6">
         <h3>Notation Style</h3>
         <hr />
-        @foreach (ADbC.Models.keysERNotation n in Model.NotationList)
+        @foreach (ADbC.Models.ERNotation n in Model.NotationList)
         {
             <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
         }
@@ -16,7 +16,7 @@
     <div class="col-md-3 col-xs-6"">
         <h3>Relationship Type</h3>
         <hr />
-        @foreach (ADbC.Models.keysERRelationship r in Model.RelationshipList)
+        @foreach (ADbC.Models.ERRelationship r in Model.RelationshipList)
         {
             <p>@Html.RadioButton("relation", r.DescriptionShort, new { id = "radios" }) @r.DescriptionLong</p>
         }

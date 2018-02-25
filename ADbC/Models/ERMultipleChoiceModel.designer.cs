@@ -22,7 +22,7 @@ namespace ADbC.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ADBC")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="adbc")]
 	public partial class ERMultipleChoiceModelDataContext : ModuleBaseModelDataContext
 	{
 		
@@ -30,16 +30,16 @@ namespace ADbC.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertkeysERAnswer(keysERAnswer instance);
-    partial void UpdatekeysERAnswer(keysERAnswer instance);
-    partial void DeletekeysERAnswer(keysERAnswer instance);
-    partial void InsertkeysERQuestion(keysERQuestion instance);
-    partial void UpdatekeysERQuestion(keysERQuestion instance);
-    partial void DeletekeysERQuestion(keysERQuestion instance);
+    partial void InsertMCAnswer(MCAnswer instance);
+    partial void UpdateMCAnswer(MCAnswer instance);
+    partial void DeleteMCAnswer(MCAnswer instance);
+    partial void InsertMCQuestion(MCQuestion instance);
+    partial void UpdateMCQuestion(MCQuestion instance);
+    partial void DeleteMCQuestion(MCQuestion instance);
     #endregion
 		
 		public ERMultipleChoiceModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ADBCConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -68,51 +68,51 @@ namespace ADbC.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<keysERAnswer> keysERAnswers
+		public System.Data.Linq.Table<MCAnswer> MCAnswers
 		{
 			get
 			{
-				return this.GetTable<keysERAnswer>();
+				return this.GetTable<MCAnswer>();
 			}
 		}
 		
-		public System.Data.Linq.Table<keysERQuestion> keysERQuestions
+		public System.Data.Linq.Table<MCQuestion> MCQuestions
 		{
 			get
 			{
-				return this.GetTable<keysERQuestion>();
+				return this.GetTable<MCQuestion>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERAnswersByQuestionID")]
-		public ISingleResult<keysERAnswer> SelectERAnswersByQuestionID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ERQuestionID", DbType="Int")] System.Nullable<int> eRQuestionID)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectMCAnswersByQuestionID")]
+		public ISingleResult<MCAnswer> SelectMCAnswersByQuestionID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ERQuestionID", DbType="Int")] System.Nullable<int> eRQuestionID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eRQuestionID);
-			return ((ISingleResult<keysERAnswer>)(result.ReturnValue));
+			return ((ISingleResult<MCAnswer>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERQuestionByDescShort")]
-		public ISingleResult<keysERQuestion> SelectERQuestionByDescShort([global::System.Data.Linq.Mapping.ParameterAttribute(Name="DescriptionShort", DbType="VarChar(1)")] string descriptionShort)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), descriptionShort);
-			return ((ISingleResult<keysERQuestion>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectERQuestionsByModuleName")]
-		public ISingleResult<keysERQuestion> SelectERQuestionsByModuleName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(50)")] string moduleName)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectMCQuestionsByModuleName")]
+		public ISingleResult<MCQuestion> SelectMCQuestionsByModuleName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(50)")] string moduleName)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleName);
-			return ((ISingleResult<keysERQuestion>)(result.ReturnValue));
+			return ((ISingleResult<MCQuestion>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectMCQuestionByDescShort")]
+		public ISingleResult<MCQuestion> SelectMCQuestionByDescShort([global::System.Data.Linq.Mapping.ParameterAttribute(Name="DescriptionShort", DbType="VarChar(50)")] string descriptionShort)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), descriptionShort);
+			return ((ISingleResult<MCQuestion>)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysERAnswer")]
-	public partial class keysERAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MCAnswer")]
+	public partial class MCAnswer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ERAnswerID;
+		private int _MCAnswerID;
 		
 		private int _RelativeAnswerID;
 		
@@ -120,48 +120,48 @@ namespace ADbC.Models
 		
 		private bool _Correct;
 		
-		private string _DialogText;
+		private string _ResponseText;
 		
-		private EntityRef<keysERQuestion> _keysERQuestion;
+		private EntityRef<MCQuestion> _MCQuestion;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnERAnswerIDChanging(int value);
-    partial void OnERAnswerIDChanged();
+    partial void OnMCAnswerIDChanging(int value);
+    partial void OnMCAnswerIDChanged();
     partial void OnRelativeAnswerIDChanging(int value);
     partial void OnRelativeAnswerIDChanged();
     partial void OnQuestionIDChanging(int value);
     partial void OnQuestionIDChanged();
     partial void OnCorrectChanging(bool value);
     partial void OnCorrectChanged();
-    partial void OnDialogTextChanging(string value);
-    partial void OnDialogTextChanged();
+    partial void OnResponseTextChanging(string value);
+    partial void OnResponseTextChanged();
     #endregion
 		
-		public keysERAnswer()
+		public MCAnswer()
 		{
-			this._keysERQuestion = default(EntityRef<keysERQuestion>);
+			this._MCQuestion = default(EntityRef<MCQuestion>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ERAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ERAnswerID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MCAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MCAnswerID
 		{
 			get
 			{
-				return this._ERAnswerID;
+				return this._MCAnswerID;
 			}
 			set
 			{
-				if ((this._ERAnswerID != value))
+				if ((this._MCAnswerID != value))
 				{
-					this.OnERAnswerIDChanging(value);
+					this.OnMCAnswerIDChanging(value);
 					this.SendPropertyChanging();
-					this._ERAnswerID = value;
-					this.SendPropertyChanged("ERAnswerID");
-					this.OnERAnswerIDChanged();
+					this._MCAnswerID = value;
+					this.SendPropertyChanged("MCAnswerID");
+					this.OnMCAnswerIDChanged();
 				}
 			}
 		}
@@ -197,7 +197,7 @@ namespace ADbC.Models
 			{
 				if ((this._QuestionID != value))
 				{
-					if (this._keysERQuestion.HasLoadedOrAssignedValue)
+					if (this._MCQuestion.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -230,56 +230,56 @@ namespace ADbC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DialogText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string DialogText
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ResponseText
 		{
 			get
 			{
-				return this._DialogText;
+				return this._ResponseText;
 			}
 			set
 			{
-				if ((this._DialogText != value))
+				if ((this._ResponseText != value))
 				{
-					this.OnDialogTextChanging(value);
+					this.OnResponseTextChanging(value);
 					this.SendPropertyChanging();
-					this._DialogText = value;
-					this.SendPropertyChanged("DialogText");
-					this.OnDialogTextChanged();
+					this._ResponseText = value;
+					this.SendPropertyChanged("ResponseText");
+					this.OnResponseTextChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysERQuestion_keysERAnswer", Storage="_keysERQuestion", ThisKey="QuestionID", OtherKey="ERQuestionID", IsForeignKey=true)]
-		public keysERQuestion keysERQuestion
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MCQuestion_MCAnswer", Storage="_MCQuestion", ThisKey="QuestionID", OtherKey="MCQuestionID", IsForeignKey=true)]
+		public MCQuestion MCQuestion
 		{
 			get
 			{
-				return this._keysERQuestion.Entity;
+				return this._MCQuestion.Entity;
 			}
 			set
 			{
-				keysERQuestion previousValue = this._keysERQuestion.Entity;
+				MCQuestion previousValue = this._MCQuestion.Entity;
 				if (((previousValue != value) 
-							|| (this._keysERQuestion.HasLoadedOrAssignedValue == false)))
+							|| (this._MCQuestion.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._keysERQuestion.Entity = null;
-						previousValue.keysERAnswers.Remove(this);
+						this._MCQuestion.Entity = null;
+						previousValue.MCAnswers.Remove(this);
 					}
-					this._keysERQuestion.Entity = value;
+					this._MCQuestion.Entity = value;
 					if ((value != null))
 					{
-						value.keysERAnswers.Add(this);
-						this._QuestionID = value.ERQuestionID;
+						value.MCAnswers.Add(this);
+						this._QuestionID = value.MCQuestionID;
 					}
 					else
 					{
 						this._QuestionID = default(int);
 					}
-					this.SendPropertyChanged("keysERQuestion");
+					this.SendPropertyChanged("MCQuestion");
 				}
 			}
 		}
@@ -305,13 +305,15 @@ namespace ADbC.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.keysERQuestion")]
-	public partial class keysERQuestion : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MCQuestion")]
+	public partial class MCQuestion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ERQuestionID;
+		private int _MCQuestionID;
+		
+		private int _ModuleID;
 		
 		private string _Title;
 		
@@ -319,14 +321,16 @@ namespace ADbC.Models
 		
 		private string _DescriptionShort;
 		
-		private EntitySet<keysERAnswer> _keysERAnswers;
+		private EntitySet<MCAnswer> _MCAnswers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnERQuestionIDChanging(int value);
-    partial void OnERQuestionIDChanged();
+    partial void OnMCQuestionIDChanging(int value);
+    partial void OnMCQuestionIDChanged();
+    partial void OnModuleIDChanging(int value);
+    partial void OnModuleIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnDescriptionLongChanging(string value);
@@ -335,28 +339,48 @@ namespace ADbC.Models
     partial void OnDescriptionShortChanged();
     #endregion
 		
-		public keysERQuestion()
+		public MCQuestion()
 		{
-			this._keysERAnswers = new EntitySet<keysERAnswer>(new Action<keysERAnswer>(this.attach_keysERAnswers), new Action<keysERAnswer>(this.detach_keysERAnswers));
+			this._MCAnswers = new EntitySet<MCAnswer>(new Action<MCAnswer>(this.attach_MCAnswers), new Action<MCAnswer>(this.detach_MCAnswers));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ERQuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ERQuestionID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MCQuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MCQuestionID
 		{
 			get
 			{
-				return this._ERQuestionID;
+				return this._MCQuestionID;
 			}
 			set
 			{
-				if ((this._ERQuestionID != value))
+				if ((this._MCQuestionID != value))
 				{
-					this.OnERQuestionIDChanging(value);
+					this.OnMCQuestionIDChanging(value);
 					this.SendPropertyChanging();
-					this._ERQuestionID = value;
-					this.SendPropertyChanged("ERQuestionID");
-					this.OnERQuestionIDChanged();
+					this._MCQuestionID = value;
+					this.SendPropertyChanged("MCQuestionID");
+					this.OnMCQuestionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleID", DbType="Int NOT NULL")]
+		public int ModuleID
+		{
+			get
+			{
+				return this._ModuleID;
+			}
+			set
+			{
+				if ((this._ModuleID != value))
+				{
+					this.OnModuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleID = value;
+					this.SendPropertyChanged("ModuleID");
+					this.OnModuleIDChanged();
 				}
 			}
 		}
@@ -421,16 +445,16 @@ namespace ADbC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="keysERQuestion_keysERAnswer", Storage="_keysERAnswers", ThisKey="ERQuestionID", OtherKey="QuestionID")]
-		public EntitySet<keysERAnswer> keysERAnswers
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MCQuestion_MCAnswer", Storage="_MCAnswers", ThisKey="MCQuestionID", OtherKey="QuestionID")]
+		public EntitySet<MCAnswer> MCAnswers
 		{
 			get
 			{
-				return this._keysERAnswers;
+				return this._MCAnswers;
 			}
 			set
 			{
-				this._keysERAnswers.Assign(value);
+				this._MCAnswers.Assign(value);
 			}
 		}
 		
@@ -454,16 +478,16 @@ namespace ADbC.Models
 			}
 		}
 		
-		private void attach_keysERAnswers(keysERAnswer entity)
+		private void attach_MCAnswers(MCAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.keysERQuestion = this;
+			entity.MCQuestion = this;
 		}
 		
-		private void detach_keysERAnswers(keysERAnswer entity)
+		private void detach_MCAnswers(MCAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.keysERQuestion = null;
+			entity.MCQuestion = null;
 		}
 	}
 }

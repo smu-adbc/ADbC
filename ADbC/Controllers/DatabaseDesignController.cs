@@ -16,8 +16,8 @@ namespace ADbC.Controllers
                 ERdc.ObjectTrackingEnabled = false;
 
                 ERdc.module = ERdc.SelectModuleByName("ER Notation").ToList().First();
-                ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.keysModules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.Modules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.Modules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
 
                 ERdc.NotationList = ERdc.SelectERNotations().ToList();
                 ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
@@ -32,7 +32,7 @@ namespace ADbC.Controllers
             {
                 MCdc.ObjectTrackingEnabled = false;
 
-                MCdc.MenuQuestions = MCdc.SelectERQuestionsByModuleName("Scenario To ER").OrderBy(x => x.ERQuestionID).ToList();
+                MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Scenario To ER").OrderBy(x => x.MCQuestionID).ToList();
 
                 MCdc.module = MCdc.SelectModuleByName("Scenario To ER").ToList().First();
                 MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
@@ -46,8 +46,8 @@ namespace ADbC.Controllers
         {
             using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
             {
-                MCdc.Question = MCdc.SelectERQuestionByDescShort(shortDescription).ToList().First();
-                MCdc.Answers = MCdc.SelectERAnswersByQuestionID(MCdc.Question.ERQuestionID).ToList();
+                MCdc.Question = MCdc.SelectMCQuestionByDescShort(shortDescription).ToList().First();
+                MCdc.Answers = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList();
 
                 return PartialView("/Views/DatabaseDesign/ERMultipleChoicePartialView.cshtml", MCdc);
             }
@@ -60,8 +60,8 @@ namespace ADbC.Controllers
             {
                 MCdc.ObjectTrackingEnabled = false;
 
-                MCdc.Question = MCdc.SelectERQuestionByDescShort(descShort).ToList().First();
-                keysERAnswer answer = MCdc.SelectERAnswersByQuestionID(MCdc.Question.ERQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
+                MCdc.Question = MCdc.SelectMCQuestionByDescShort(descShort).ToList().First();
+                MCAnswer answer = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
 
                 return PartialView("/Views/DatabaseDesign/ERMultipleChoiceResultModal", answer);
             }

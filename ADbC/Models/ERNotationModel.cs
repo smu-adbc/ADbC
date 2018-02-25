@@ -7,7 +7,7 @@ namespace ADbC.Models
 {
     public partial class ERNotationModelDataContext : ModuleBaseModelDataContext
     {
-        public List<keysERNotation> NotationList;
-        public List<keysERRelationship> RelationshipList;
+        public List<ERNotation> NotationList;
+        public List<ERRelationship> RelationshipList;
     }
 }

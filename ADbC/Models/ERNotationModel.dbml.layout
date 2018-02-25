@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ERNotationModel">
   <DataContextMoniker Name="/ERNotationModelDataContext" />
   <nestedChildShapes>
-    <classShape Id="7ea4d102-54ad-4657-99e8-d91d499c977b" absoluteBounds="5.5, 1.5, 2, 1.3862939453125">
-      <DataClassMoniker Name="/ERNotationModelDataContext/keysERNotation" />
+    <classShape Id="a305d809-28f7-44dc-b897-e14bbd011e96" absoluteBounds="4.125, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ERNotationModelDataContext/ERRelationship" />
       <nestedChildShapes>
-        <elementListCompartment Id="3ea73ef3-4efe-4a0d-84ea-2bb5d9aea25d" absoluteBounds="5.515, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c1b7c025-fe86-4a52-ad14-af2cb569bcaf" absoluteBounds="4.14, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="527664b9-34e1-44eb-b182-52723af34436" absoluteBounds="2.25, 1.5, 2, 1.3862939453125">
-      <DataClassMoniker Name="/ERNotationModelDataContext/keysERRelationship" />
+    <classShape Id="e498c0c8-60d6-413d-ae66-3ca07ffb7014" absoluteBounds="6.875, 0.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ERNotationModelDataContext/ERNotation" />
       <nestedChildShapes>
-        <elementListCompartment Id="5650c1e7-9ec6-4508-9a46-be6f17a8b6ca" absoluteBounds="2.2649999999999997, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="777371c1-ce4e-4a6c-9f6a-b0a94996e8c7" absoluteBounds="6.89, 1.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
