@@ -53,8 +53,10 @@
         </div>
     </div>
 </div>
+<!--This script calls the imageView modal to the front and replaces the dummy image with the image of the answer selected on click-->
 <script src="~/Scripts/MCImageViewer.js"></script>
 
+<!--These calls render the code for the modals for each of the answer results into the bottom of the page-->
 @{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[0]);}
 @{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[1]);}
 @{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[2]);}

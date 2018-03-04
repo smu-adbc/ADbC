@@ -16,8 +16,10 @@
         </div>
     </div>
 </div>
+<!--This big chunk genertes the modal for the introduction/instructions on each module-->
 @if (Model.module.HasIntroModal)
 {
+<!--this is some modal standard stuff-->
 <div class="modal modal fade" id="introModal" role="contentinfo">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -27,8 +29,10 @@
             </div>
             <div class="modal-body">
                 <div id="accordion" class="panel-group">
+                    <!--We're generating an accordion panel for each section-->
                     @foreach (ADbC.Models.ModuleIntroSection currentSection in Model.sections)
                     {
+                        <!--generating the id dynamically to differentiate between panels-->
                         string id = "collapse" + currentSection.SectionOrder;
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -36,16 +40,21 @@
                                     <a data-toggle="collapse" data-parent="#accordion" href="#@id">@currentSection.SectionTitle</a>
                                 </h4>
                             </div>
+                            <!--that x?y:z statement below is a ternary operator, look it up. It sets which is open at load, in this case-->
                             <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
                                     <div class="panel-body">
+                                        <!--Stacked foreach loop, so that we output all of the content rows for each section row-->
                                         @foreach (ADbC.Models.ModuleIntroContent currentContent in Model.contents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
                                         {
+                                            <!--This functionality can be expanded, but having the ability to at least designate images built in makes it more reusable-->
                                             if (currentContent.IsImage)
                                             {
                                                 <img class="img-responsive img-intro" src="@currentContent.Content"/>
                                             }
                                             else
                                             {
+                                                <!--Generally, don't output raw. In this case, it's for ease of use even, and is relatively safe bc of our locked down db (hopefully)-->
+                                                <!--The content rows hold formatting (lists and b tags and such) and I couldn't think of a better way to do this-->
                                                 <p>@Html.Raw(currentContent.Content)</p>
                                             }
                                         }
