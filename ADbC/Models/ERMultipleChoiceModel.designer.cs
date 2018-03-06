@@ -39,7 +39,7 @@ namespace ADbC.Models
     #endregion
 		
 		public ERMultipleChoiceModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -317,7 +317,9 @@ namespace ADbC.Models
 		
 		private string _Title;
 		
-		private string _DescriptionLong;
+		private string _Prompt;
+		
+		private bool _IsPromptImage;
 		
 		private string _DescriptionShort;
 		
@@ -333,8 +335,10 @@ namespace ADbC.Models
     partial void OnModuleIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
-    partial void OnDescriptionLongChanging(string value);
-    partial void OnDescriptionLongChanged();
+    partial void OnPromptChanging(string value);
+    partial void OnPromptChanged();
+    partial void OnIsPromptImageChanging(bool value);
+    partial void OnIsPromptImageChanged();
     partial void OnDescriptionShortChanging(string value);
     partial void OnDescriptionShortChanged();
     #endregion
@@ -405,27 +409,47 @@ namespace ADbC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string DescriptionLong
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prompt", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Prompt
 		{
 			get
 			{
-				return this._DescriptionLong;
+				return this._Prompt;
 			}
 			set
 			{
-				if ((this._DescriptionLong != value))
+				if ((this._Prompt != value))
 				{
-					this.OnDescriptionLongChanging(value);
+					this.OnPromptChanging(value);
 					this.SendPropertyChanging();
-					this._DescriptionLong = value;
-					this.SendPropertyChanged("DescriptionLong");
-					this.OnDescriptionLongChanged();
+					this._Prompt = value;
+					this.SendPropertyChanged("Prompt");
+					this.OnPromptChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPromptImage", DbType="Bit NOT NULL")]
+		public bool IsPromptImage
+		{
+			get
+			{
+				return this._IsPromptImage;
+			}
+			set
+			{
+				if ((this._IsPromptImage != value))
+				{
+					this.OnIsPromptImageChanging(value);
+					this.SendPropertyChanging();
+					this._IsPromptImage = value;
+					this.SendPropertyChanged("IsPromptImage");
+					this.OnIsPromptImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string DescriptionShort
 		{
 			get

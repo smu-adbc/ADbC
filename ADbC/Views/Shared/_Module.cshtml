@@ -40,7 +40,7 @@
                                     <a data-toggle="collapse" data-parent="#accordion" href="#@id">@currentSection.SectionTitle</a>
                                 </h4>
                             </div>
-                            <!--that x?y:z statement below is a ternary operator, look it up. It sets which is open at load, in this case-->
+                            <!--that x?y:z structure below is a ternary operator, look it up. It sets which is open at load, in this case-->
                             <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
                                     <div class="panel-body">
                                         <!--Stacked foreach loop, so that we output all of the content rows for each section row-->
