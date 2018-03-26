@@ -1,15 +1,15 @@
 ﻿@model ADbC.Models.ERMultipleChoiceModelDataContext
 
 <div class="row">
-    @if (Model.Question.IsPromptImage)
-    {
-        <img id="prompt" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/prompt.png" />
-    }
-    else
+    @if (!string.IsNullOrEmpty(Model.Question.Prompt))
     {
         <h4>
             @Model.Question.Prompt
         </h4>
+    }
+    @if (Model.Question.IsPromptImage)
+    {
+        <img id="prompt" class="img-responsive img-mcanswer" src="/Content/Images/Scenario To ER/@(Model.Question.DescriptionShort)/prompt.png" />
     }
 </div>
 <div id="answers" data-question="@Model.Question.Prompt">

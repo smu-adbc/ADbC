@@ -39,7 +39,7 @@ namespace ADbC.Models
     #endregion
 		
 		public ERNotationModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

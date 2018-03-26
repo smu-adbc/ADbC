@@ -253,10 +253,10 @@
     <Content Include="Content\Images\ERNotation\UMLC\incOver.PNG" />
     <Content Include="Content\Images\ERNotation\UMLC\nnBinary.PNG" />
     <Content Include="Content\Images\Logos\adbcLogo.png" />
-    <Content Include="Content\Images\Scenario To ER\autoparts\1.png" />
-    <Content Include="Content\Images\Scenario To ER\autoparts\2.png" />
-    <Content Include="Content\Images\Scenario To ER\autoparts\3.png" />
-    <Content Include="Content\Images\Scenario To ER\autoparts\4.png" />
+    <Content Include="Content\Images\Scenario To ER\carrepair\1.png" />
+    <Content Include="Content\Images\Scenario To ER\carrepair\2.png" />
+    <Content Include="Content\Images\Scenario To ER\carrepair\3.png" />
+    <Content Include="Content\Images\Scenario To ER\carrepair\4.png" />
     <Content Include="Content\Images\Scenario To ER\dealership\1.png" />
     <Content Include="Content\Images\Scenario To ER\dealership\2.png" />
     <Content Include="Content\Images\Scenario To ER\dealership\3.png" />
@@ -285,10 +285,12 @@
     <Content Include="Content\Images\Scenario To ER\suppliers\2.png" />
     <Content Include="Content\Images\Scenario To ER\suppliers\3.png" />
     <Content Include="Content\Images\Scenario To ER\suppliers\4.png" />
+    <Content Include="Content\Images\Scenario To ER\suppliers\prompt.PNG" />
     <Content Include="Content\Images\Scenario To ER\university\1.png" />
     <Content Include="Content\Images\Scenario To ER\university\2.png" />
     <Content Include="Content\Images\Scenario To ER\university\3.png" />
     <Content Include="Content\Images\Scenario To ER\university\4.png" />
+    <Content Include="Content\Images\Scenario To ER\university\prompt.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
