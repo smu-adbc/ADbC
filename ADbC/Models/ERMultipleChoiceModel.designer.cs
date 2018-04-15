@@ -30,12 +30,12 @@ namespace ADbC.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertMCAnswer(MCAnswer instance);
-    partial void UpdateMCAnswer(MCAnswer instance);
-    partial void DeleteMCAnswer(MCAnswer instance);
     partial void InsertMCQuestion(MCQuestion instance);
     partial void UpdateMCQuestion(MCQuestion instance);
     partial void DeleteMCQuestion(MCQuestion instance);
+    partial void InsertMCAnswer(MCAnswer instance);
+    partial void UpdateMCAnswer(MCAnswer instance);
+    partial void DeleteMCAnswer(MCAnswer instance);
     #endregion
 		
 		public ERMultipleChoiceModelDataContext() : 
@@ -68,19 +68,19 @@ namespace ADbC.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<MCAnswer> MCAnswers
-		{
-			get
-			{
-				return this.GetTable<MCAnswer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MCQuestion> MCQuestions
 		{
 			get
 			{
 				return this.GetTable<MCQuestion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MCAnswer> MCAnswers
+		{
+			get
+			{
+				return this.GetTable<MCAnswer>();
 			}
 		}
 		
@@ -103,205 +103,6 @@ namespace ADbC.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), descriptionShort);
 			return ((ISingleResult<MCQuestion>)(result.ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MCAnswer")]
-	public partial class MCAnswer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MCAnswerID;
-		
-		private int _RelativeAnswerID;
-		
-		private int _QuestionID;
-		
-		private bool _Correct;
-		
-		private string _ResponseText;
-		
-		private EntityRef<MCQuestion> _MCQuestion;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMCAnswerIDChanging(int value);
-    partial void OnMCAnswerIDChanged();
-    partial void OnRelativeAnswerIDChanging(int value);
-    partial void OnRelativeAnswerIDChanged();
-    partial void OnQuestionIDChanging(int value);
-    partial void OnQuestionIDChanged();
-    partial void OnCorrectChanging(bool value);
-    partial void OnCorrectChanged();
-    partial void OnResponseTextChanging(string value);
-    partial void OnResponseTextChanged();
-    #endregion
-		
-		public MCAnswer()
-		{
-			this._MCQuestion = default(EntityRef<MCQuestion>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MCAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MCAnswerID
-		{
-			get
-			{
-				return this._MCAnswerID;
-			}
-			set
-			{
-				if ((this._MCAnswerID != value))
-				{
-					this.OnMCAnswerIDChanging(value);
-					this.SendPropertyChanging();
-					this._MCAnswerID = value;
-					this.SendPropertyChanged("MCAnswerID");
-					this.OnMCAnswerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelativeAnswerID", DbType="Int NOT NULL")]
-		public int RelativeAnswerID
-		{
-			get
-			{
-				return this._RelativeAnswerID;
-			}
-			set
-			{
-				if ((this._RelativeAnswerID != value))
-				{
-					this.OnRelativeAnswerIDChanging(value);
-					this.SendPropertyChanging();
-					this._RelativeAnswerID = value;
-					this.SendPropertyChanged("RelativeAnswerID");
-					this.OnRelativeAnswerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL")]
-		public int QuestionID
-		{
-			get
-			{
-				return this._QuestionID;
-			}
-			set
-			{
-				if ((this._QuestionID != value))
-				{
-					if (this._MCQuestion.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuestionIDChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionID = value;
-					this.SendPropertyChanged("QuestionID");
-					this.OnQuestionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correct", DbType="Bit NOT NULL")]
-		public bool Correct
-		{
-			get
-			{
-				return this._Correct;
-			}
-			set
-			{
-				if ((this._Correct != value))
-				{
-					this.OnCorrectChanging(value);
-					this.SendPropertyChanging();
-					this._Correct = value;
-					this.SendPropertyChanged("Correct");
-					this.OnCorrectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ResponseText
-		{
-			get
-			{
-				return this._ResponseText;
-			}
-			set
-			{
-				if ((this._ResponseText != value))
-				{
-					this.OnResponseTextChanging(value);
-					this.SendPropertyChanging();
-					this._ResponseText = value;
-					this.SendPropertyChanged("ResponseText");
-					this.OnResponseTextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MCQuestion_MCAnswer", Storage="_MCQuestion", ThisKey="QuestionID", OtherKey="MCQuestionID", IsForeignKey=true)]
-		public MCQuestion MCQuestion
-		{
-			get
-			{
-				return this._MCQuestion.Entity;
-			}
-			set
-			{
-				MCQuestion previousValue = this._MCQuestion.Entity;
-				if (((previousValue != value) 
-							|| (this._MCQuestion.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MCQuestion.Entity = null;
-						previousValue.MCAnswers.Remove(this);
-					}
-					this._MCQuestion.Entity = value;
-					if ((value != null))
-					{
-						value.MCAnswers.Add(this);
-						this._QuestionID = value.MCQuestionID;
-					}
-					else
-					{
-						this._QuestionID = default(int);
-					}
-					this.SendPropertyChanged("MCQuestion");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -512,6 +313,229 @@ namespace ADbC.Models
 		{
 			this.SendPropertyChanging();
 			entity.MCQuestion = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MCAnswer")]
+	public partial class MCAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MCAnswerID;
+		
+		private int _RelativeAnswerID;
+		
+		private int _QuestionID;
+		
+		private bool _Correct;
+		
+		private string _ResponseText;
+		
+		private bool _HasImage;
+		
+		private EntityRef<MCQuestion> _MCQuestion;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMCAnswerIDChanging(int value);
+    partial void OnMCAnswerIDChanged();
+    partial void OnRelativeAnswerIDChanging(int value);
+    partial void OnRelativeAnswerIDChanged();
+    partial void OnQuestionIDChanging(int value);
+    partial void OnQuestionIDChanged();
+    partial void OnCorrectChanging(bool value);
+    partial void OnCorrectChanged();
+    partial void OnResponseTextChanging(string value);
+    partial void OnResponseTextChanged();
+    partial void OnHasImageChanging(bool value);
+    partial void OnHasImageChanged();
+    #endregion
+		
+		public MCAnswer()
+		{
+			this._MCQuestion = default(EntityRef<MCQuestion>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MCAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MCAnswerID
+		{
+			get
+			{
+				return this._MCAnswerID;
+			}
+			set
+			{
+				if ((this._MCAnswerID != value))
+				{
+					this.OnMCAnswerIDChanging(value);
+					this.SendPropertyChanging();
+					this._MCAnswerID = value;
+					this.SendPropertyChanged("MCAnswerID");
+					this.OnMCAnswerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelativeAnswerID", DbType="Int NOT NULL")]
+		public int RelativeAnswerID
+		{
+			get
+			{
+				return this._RelativeAnswerID;
+			}
+			set
+			{
+				if ((this._RelativeAnswerID != value))
+				{
+					this.OnRelativeAnswerIDChanging(value);
+					this.SendPropertyChanging();
+					this._RelativeAnswerID = value;
+					this.SendPropertyChanged("RelativeAnswerID");
+					this.OnRelativeAnswerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionID", DbType="Int NOT NULL")]
+		public int QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					if (this._MCQuestion.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correct", DbType="Bit NOT NULL")]
+		public bool Correct
+		{
+			get
+			{
+				return this._Correct;
+			}
+			set
+			{
+				if ((this._Correct != value))
+				{
+					this.OnCorrectChanging(value);
+					this.SendPropertyChanging();
+					this._Correct = value;
+					this.SendPropertyChanged("Correct");
+					this.OnCorrectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponseText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ResponseText
+		{
+			get
+			{
+				return this._ResponseText;
+			}
+			set
+			{
+				if ((this._ResponseText != value))
+				{
+					this.OnResponseTextChanging(value);
+					this.SendPropertyChanging();
+					this._ResponseText = value;
+					this.SendPropertyChanged("ResponseText");
+					this.OnResponseTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasImage", DbType="Bit NOT NULL")]
+		public bool HasImage
+		{
+			get
+			{
+				return this._HasImage;
+			}
+			set
+			{
+				if ((this._HasImage != value))
+				{
+					this.OnHasImageChanging(value);
+					this.SendPropertyChanging();
+					this._HasImage = value;
+					this.SendPropertyChanged("HasImage");
+					this.OnHasImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MCQuestion_MCAnswer", Storage="_MCQuestion", ThisKey="QuestionID", OtherKey="MCQuestionID", IsForeignKey=true)]
+		public MCQuestion MCQuestion
+		{
+			get
+			{
+				return this._MCQuestion.Entity;
+			}
+			set
+			{
+				MCQuestion previousValue = this._MCQuestion.Entity;
+				if (((previousValue != value) 
+							|| (this._MCQuestion.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MCQuestion.Entity = null;
+						previousValue.MCAnswers.Remove(this);
+					}
+					this._MCQuestion.Entity = value;
+					if ((value != null))
+					{
+						value.MCAnswers.Add(this);
+						this._QuestionID = value.MCQuestionID;
+					}
+					else
+					{
+						this._QuestionID = default(int);
+					}
+					this.SendPropertyChanged("MCQuestion");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

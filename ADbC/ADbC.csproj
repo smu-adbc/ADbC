@@ -269,10 +269,12 @@
     <Content Include="Content\Images\Scenario To ER\orders\2.png" />
     <Content Include="Content\Images\Scenario To ER\orders\3.png" />
     <Content Include="Content\Images\Scenario To ER\orders\4.png" />
+    <Content Include="Content\Images\Scenario To ER\orders\prompt.png" />
     <Content Include="Content\Images\Scenario To ER\phones\1.png" />
     <Content Include="Content\Images\Scenario To ER\phones\2.png" />
     <Content Include="Content\Images\Scenario To ER\phones\3.png" />
     <Content Include="Content\Images\Scenario To ER\phones\4.png" />
+    <Content Include="Content\Images\Scenario To ER\phones\prompt.png" />
     <Content Include="Content\Images\Scenario To ER\prescriptions\1.png" />
     <Content Include="Content\Images\Scenario To ER\prescriptions\2.png" />
     <Content Include="Content\Images\Scenario To ER\prescriptions\3.png" />

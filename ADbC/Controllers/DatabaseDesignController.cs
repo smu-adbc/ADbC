@@ -69,27 +69,82 @@ namespace ADbC.Controllers
 
         public ActionResult ERToTables()
         {
-            return View();
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("ER to Tables").OrderBy(x => x.MCQuestionID).ToList();
+
+                MCdc.module = MCdc.SelectModuleByName("ER to Tables").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
+                return View(MCdc);
+            }
         }
 
         public ActionResult FunctionalDependencies()
         {
-            return View();
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Functional Dependencies").OrderBy(x => x.MCQuestionID).ToList();
+
+                MCdc.module = MCdc.SelectModuleByName("Functional Dependencies").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
+                return View(MCdc);
+            }
         }
 
         public ActionResult Normalization()
         {
-            return View();
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Normalization").OrderBy(x => x.MCQuestionID).ToList();
+
+                MCdc.module = MCdc.SelectModuleByName("Normalization").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
+                return View(MCdc);
+            }
         }
 
         public ActionResult Denormalization()
         {
-            return View();
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Denormalization").OrderBy(x => x.MCQuestionID).ToList();
+
+                MCdc.module = MCdc.SelectModuleByName("Denormalization").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
+                return View(MCdc);
+            }
         }
 
         public ActionResult Anomalies()
         {
-            return View();
+            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            {
+                MCdc.ObjectTrackingEnabled = false;
+
+                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Anomalies").OrderBy(x => x.MCQuestionID).ToList();
+
+                MCdc.module = MCdc.SelectModuleByName("Anomalies").ToList().First();
+                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
+                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+
+                return View(MCdc);
+            }
         }
     }
 }
