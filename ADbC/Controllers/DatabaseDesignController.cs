@@ -28,7 +28,7 @@ namespace ADbC.Controllers
 
         public ActionResult ScenarioToER()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
@@ -44,7 +44,7 @@ namespace ADbC.Controllers
 
         public PartialViewResult GetERMultipleChoiceQuestion(string shortDescription)
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.Question = MCdc.SelectMCQuestionByDescShort(shortDescription).ToList().First();
                 MCdc.Answers = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList();
@@ -54,22 +54,22 @@ namespace ADbC.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult ERMultipleChoiceResultModal(string descShort, int relativeAnswerID)
+        public PartialViewResult MultipleChoiceResultModal(string descShort, int relativeAnswerID)
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
                 MCdc.Question = MCdc.SelectMCQuestionByDescShort(descShort).ToList().First();
                 MCAnswer answer = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
 
-                return PartialView("/Views/DatabaseDesign/ERMultipleChoiceResultModal", answer);
+                return PartialView("/Views/DatabaseDesign/MultipleChoiceResultModal", answer);
             }
         }
 
         public ActionResult ERToTables()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
@@ -85,7 +85,7 @@ namespace ADbC.Controllers
 
         public ActionResult FunctionalDependencies()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
@@ -101,7 +101,7 @@ namespace ADbC.Controllers
 
         public ActionResult Normalization()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
@@ -117,7 +117,7 @@ namespace ADbC.Controllers
 
         public ActionResult Denormalization()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 
@@ -133,7 +133,7 @@ namespace ADbC.Controllers
 
         public ActionResult Anomalies()
         {
-            using (ERMultipleChoiceModelDataContext MCdc = new ERMultipleChoiceModelDataContext())
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
                 MCdc.ObjectTrackingEnabled = false;
 

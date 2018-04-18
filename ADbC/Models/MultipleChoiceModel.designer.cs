@@ -23,9 +23,8 @@ namespace ADbC.Models
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="adbc")]
-	public partial class ERMultipleChoiceModelDataContext : ModuleBaseModelDataContext
-	{
-		
+	public partial class MultipleChoiceModelDataContext : ModuleBaseModelDataContext
+    { 
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
@@ -38,31 +37,31 @@ namespace ADbC.Models
     partial void DeleteMCAnswer(MCAnswer instance);
     #endregion
 		
-		public ERMultipleChoiceModelDataContext() : 
+		public MultipleChoiceModelDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ERMultipleChoiceModelDataContext(string connection) : 
+		public MultipleChoiceModelDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ERMultipleChoiceModelDataContext(System.Data.IDbConnection connection) : 
+		public MultipleChoiceModelDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ERMultipleChoiceModelDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MultipleChoiceModelDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ERMultipleChoiceModelDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MultipleChoiceModelDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

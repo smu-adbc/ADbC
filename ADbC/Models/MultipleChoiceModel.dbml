@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adbc" Class="ERMultipleChoiceModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adbc" Class="MultipleChoiceModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.csntfunmwnnr.us-west-2.rds.amazonaws.com,1433;Initial Catalog=adbc;User ID=adbcuser;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="adbcConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.MCQuestion" Member="MCQuestions">
     <Type Name="MCQuestion" Id="ID2">

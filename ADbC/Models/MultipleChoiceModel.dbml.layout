@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MultipleChoiceModel">
-  <DataContextMoniker Name="/ERMultipleChoiceModelDataContext" />
+  <DataContextMoniker Name="/MultipleChoiceModelDataContext" />
   <nestedChildShapes>
     <classShape Id="93e97b8a-4a6b-430e-961e-d46d583e23e5" absoluteBounds="0.875, 0.875, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ERMultipleChoiceModelDataContext/MCQuestion" />
+      <DataClassMoniker Name="/MultipleChoiceModelDataContext/MCQuestion" />
       <nestedChildShapes>
         <elementListCompartment Id="7b2cef38-ee26-4cb2-a7aa-1549e904628d" absoluteBounds="0.88999999999999968, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="b59f9c06-0fb6-4420-8235-977795ddccde" absoluteBounds="3.75, 1.375, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ERMultipleChoiceModelDataContext/MCAnswer" />
+      <DataClassMoniker Name="/MultipleChoiceModelDataContext/MCAnswer" />
       <nestedChildShapes>
         <elementListCompartment Id="44ee7d89-25f7-4e4a-9c2e-7e1642eeeff0" absoluteBounds="3.765, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.875 : 2.10659912109375); (3.75 : 2.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ERMultipleChoiceModelDataContext/MCQuestion/MCQuestion_MCAnswer" />
+      <AssociationMoniker Name="/MultipleChoiceModelDataContext/MCQuestion/MCQuestion_MCAnswer" />
       <nodes>
         <classShapeMoniker Id="93e97b8a-4a6b-430e-961e-d46d583e23e5" />
         <classShapeMoniker Id="b59f9c06-0fb6-4420-8235-977795ddccde" />

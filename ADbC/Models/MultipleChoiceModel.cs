@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ADbC.Models
 {
-    public partial class ERMultipleChoiceModelDataContext : ModuleBaseModelDataContext
+    public partial class MultipleChoiceModelDataContext : ModuleBaseModelDataContext
     {
         public List<MCQuestion> MenuQuestions;
 

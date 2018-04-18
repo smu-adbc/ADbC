@@ -177,8 +177,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ERMultipleChoiceModel.cs">
-      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
+    <Compile Include="Models\MultipleChoiceModel.cs">
+      <DependentUpon>MultipleChoiceModel.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\ModuleBaseModel.cs">
       <DependentUpon>ModuleBaseModel.dbml</DependentUpon>
@@ -197,10 +197,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ERNotationModel.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ERMultipleChoiceModel.designer.cs">
+    <Compile Include="Models\MultipleChoiceModel.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
+      <DependentUpon>MultipleChoiceModel.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -332,13 +332,13 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Models\ERMultipleChoiceModel.dbml">
+    <Content Include="Models\MultipleChoiceModel.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ERMultipleChoiceModel.designer.cs</LastGenOutput>
+      <LastGenOutput>MultipleChoiceModel.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\ERMultipleChoiceModel.dbml.layout">
-      <DependentUpon>ERMultipleChoiceModel.dbml</DependentUpon>
+    <None Include="Models\MultipleChoiceModel.dbml.layout">
+      <DependentUpon>MultipleChoiceModel.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -410,8 +410,8 @@
     <Content Include="Views\Security\DatabaseInference.cshtml" />
     <Content Include="Views\Security\DatabaseAuditing.cshtml" />
     <Content Include="Views\DatabaseDesign\ERMultipleChoicePartialView.cshtml" />
-    <Content Include="Views\DatabaseDesign\ERMultipleChoiceResultModal.cshtml" />
-    <Content Include="Views\DatabaseDesign\ERMultipleChoiceQuestionBar.cshtml" />
+    <Content Include="Views\DatabaseDesign\MultipleChoiceResultModal.cshtml" />
+    <Content Include="Views\DatabaseDesign\MultipleChoiceQuestionBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model ADbC.Models.ERMultipleChoiceModelDataContext
+﻿@model ADbC.Models.MultipleChoiceModelDataContext
 
 <div class="row">
     @if (!string.IsNullOrEmpty(Model.Question.Prompt))
@@ -55,7 +55,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <img class="img-responsive" id="answerImage" src="http://via.placeholder.com/350x150" style="margin:0px auto"/>
+                <img class="img-responsive" id="answerImage" src="http://via.placeholder.com/350x150" style="margin:0px auto" />
             </div>
         </div>
     </div>
@@ -64,10 +64,10 @@
 <script src="~/Scripts/MCImageViewer.js"></script>
 
 <!--These calls render the code for the modals for each of the answer results into the bottom of the page-->
-@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[0]);}
-@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[1]);}
-@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[2]);}
-@{Html.RenderPartial("ERMultipleChoiceResultModal", Model.Answers[3]);}
+@foreach (ADbC.Models.MCAnswer a in Model.Answers)
+{
+    {Html.RenderPartial("MultipleChoiceResultModal", a);}
+}
 
 
 
