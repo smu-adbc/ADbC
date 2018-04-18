@@ -1,0 +1,97 @@
+﻿@model ADbC.Models.MultipleChoiceModelDataContext
+
+<div class="row">
+    @if (!string.IsNullOrEmpty(Model.Question.Prompt))
+    {
+        <h4>
+            @Model.Question.Prompt
+        </h4>
+    }
+    @if (Model.Question.IsPromptImage)
+    {
+        <img id="prompt" class="img-responsive img-mcanswer" src="/Content/Images/Prompts/@(Model.Question.DescriptionShort).png" />
+    }
+</div>
+
+<div id="answers" data-question="@Model.Question.Prompt">
+
+    @if (Model.Answers.Count == 3)
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[0].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer1">Select Answer 1</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[1].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer2">Select Answer 2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[2].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer3">Select Answer 3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.Answers.Count == 4)
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[0].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer1">Select Answer 1</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[1].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer2">Select Answer 2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[2].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer3">Select Answer 3</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.Answers[3].AnswerText</p>
+                    <div class="row text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#answer4">Select Answer 4</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        //there is no else!
+    }
+</div>
+
+@foreach (ADbC.Models.MCAnswer a in Model.Answers)
+{
+    { Html.RenderPartial("MultipleChoiceResultModal", a); }
+}

@@ -24,7 +24,8 @@ namespace ADbC.Models
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="adbc")]
 	public partial class MultipleChoiceModelDataContext : ModuleBaseModelDataContext
-    { 
+	{
+		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
@@ -333,6 +334,8 @@ namespace ADbC.Models
 		
 		private bool _HasImage;
 		
+		private string _AnswerText;
+		
 		private EntityRef<MCQuestion> _MCQuestion;
 		
     #region Extensibility Method Definitions
@@ -351,6 +354,8 @@ namespace ADbC.Models
     partial void OnResponseTextChanged();
     partial void OnHasImageChanging(bool value);
     partial void OnHasImageChanged();
+    partial void OnAnswerTextChanging(string value);
+    partial void OnAnswerTextChanged();
     #endregion
 		
 		public MCAnswer()
@@ -479,6 +484,26 @@ namespace ADbC.Models
 					this._HasImage = value;
 					this.SendPropertyChanged("HasImage");
 					this.OnHasImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnswerText", CanBeNull=false)]
+		public string AnswerText
+		{
+			get
+			{
+				return this._AnswerText;
+			}
+			set
+			{
+				if ((this._AnswerText != value))
+				{
+					this.OnAnswerTextChanging(value);
+					this.SendPropertyChanging();
+					this._AnswerText = value;
+					this.SendPropertyChanged("AnswerText");
+					this.OnAnswerTextChanged();
 				}
 			}
 		}

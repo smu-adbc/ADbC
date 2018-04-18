@@ -53,6 +53,17 @@ namespace ADbC.Controllers
             }
         }
 
+        public PartialViewResult GetTextualMultipleChoiceQuestion(string shortDescription)
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.Question = MCdc.SelectMCQuestionByDescShort(shortDescription).ToList().First();
+                MCdc.Answers = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList();
+
+                return PartialView("/Views/DatabaseDesign/TextualMultipleChoicePartialView.cshtml", MCdc);
+            }
+        }
+
         [ChildActionOnly]
         public PartialViewResult MultipleChoiceResultModal(string descShort, int relativeAnswerID)
         {
@@ -73,7 +84,7 @@ namespace ADbC.Controllers
             {
                 MCdc.ObjectTrackingEnabled = false;
 
-                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("ER to Tables").OrderBy(x => x.MCQuestionID).ToList();
+                MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("ER to Tables").OrderBy(x => x.MCQuestionID).ToList();
 
                 MCdc.module = MCdc.SelectModuleByName("ER to Tables").ToList().First();
                 MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
