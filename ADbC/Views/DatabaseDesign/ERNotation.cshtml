@@ -9,27 +9,45 @@
         <h3>Notation Style</h3>
         <hr />
         <!--From the model, loop through the Notation objs from the db and output radio buttons with name:notation; id:radios; value:DescriptionShort-->
-        @foreach (ADbC.Models.ERNotation n in Model.NotationList)
+        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo1" })</p>
+        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo2" })</p>
+
+        @*@foreach (ADbC.Models.ERNotation n in Model.NotationList)
         {
-            <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
-        }
+        <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
+        }*@
     </div>
-    <div class="col-md-3 col-xs-6" ">
+    <div class="col-md-3 col-xs-6">
         <h3>Relationship Type</h3>
         <hr />
         <!--From the model, loop through the Relationship objs from the db and output radio buttons with name:relation; id:radios; value:DescriptionShort-->
         @foreach (ADbC.Models.ERRelationship r in Model.RelationshipList)
-    {
+        {
         <p>@Html.RadioButton("relation", r.DescriptionShort, new { id = "radios" }) @r.DescriptionLong</p>
-}
+        }
     </div>
 </div>
-<div class="row" style="min-height: 260px;">
-    <div class="col-md-offset-3  col-md-6" id="output">
-        <img id="diagram" class="img-responsive" style="visibility: hidden" />
+<div id="diagrams" class="row" style="min-height: 260px;">
+    <div class="col-md-offset-2  col-md-4" id="output">
+        <img id="diagram1" class="img-responsive" style="visibility: hidden" />
+    </div>
+    <div class="col-md-4" id="output">
+        <img id="diagram2" class="img-responsive" style="visibility: hidden" />
     </div>
 </div>
-<!--This script watches for each radio button click, and when one from each list is selected, produces an immage in the diagram <img /> tag-->
+
+<div class="modal modal fade" id="imageView">
+    <div class="modal-dialog" style="min-width:50%; height:auto;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="img-responsive" id="diagramImage" src="http://via.placeholder.com/350x150" style="margin:0px auto" />
+            </div>
+        </div>
+    </div>
+</div>
+<!--This script watches for each radio button click, and when one from each list is selected, produces an image in the diagram <img /> tag-->
 <!--This combination of database generated content and javascript interaction provides dynamic construction and performance benefits as opposed
     to doing both elements with one or the other-->
 <script src="/Scripts/ERNotationImageGenerator.js"></script>
+<script src="/Scripts/ERNotationImageViewer.js"></script>
