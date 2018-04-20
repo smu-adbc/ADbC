@@ -253,8 +253,8 @@
     <Content Include="Content\Images\ERNotation\UMLC\incOver.PNG" />
     <Content Include="Content\Images\ERNotation\UMLC\nnBinary.PNG" />
     <Content Include="Content\Images\Logos\adbcLogo.png" />
-    <Content Include="Content\Images\Prompts\1NUnary.PNG" />
-    <Content Include="Content\Images\Prompts\1NBinary.PNG" />
+    <Content Include="Content\Images\ER to Tables\Prompts\1NUnary.PNG" />
+    <Content Include="Content\Images\ER to Tables\Prompts\1NBinary.PNG" />
     <Content Include="Content\Images\Scenario To ER\carrepair\1.png" />
     <Content Include="Content\Images\Scenario To ER\carrepair\2.png" />
     <Content Include="Content\Images\Scenario To ER\carrepair\3.png" />
@@ -419,7 +419,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\ERtoTables\" />
+    <Folder Include="Content\Images\Anomalies\Prompts\" />
     <Folder Include="docs\" />
     <Folder Include="SQL\etc\" />
   </ItemGroup>

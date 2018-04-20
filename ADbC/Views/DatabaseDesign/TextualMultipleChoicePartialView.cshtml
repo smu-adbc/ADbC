@@ -9,7 +9,7 @@
     }
     @if (Model.Question.IsPromptImage)
     {
-        <img id="prompt" class="img-responsive img-mcanswer" src="/Content/Images/Prompts/@(Model.Question.DescriptionShort).png" />
+        <img id="prompt" class="img-responsive img-mcanswer" src="/Content/Images/@(Model.module.ModuleName)/Prompts/@(Model.Question.DescriptionShort).png" />
     }
 </div>
 
