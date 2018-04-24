@@ -8,17 +8,12 @@
     <div class="col-md-offset-3 col-md-3 col-xs-6">
         <h3>Notation Style</h3>
         <hr />
-        <!--From the model, loop through the Notation objs from the db and output radio buttons with name:notation; id:radios; value:DescriptionShort-->
+        <!--From the model, generate list boxes for the notation types. There are two to facilitate comparisons-->
         <h4>Figure 1</h4>
         <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo1", style = "max-width:100%"})</p>
         <br />
         <h4>Figure 2</h4>
         <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo2", style = "max-width:100%"})</p>
-
-        @*@foreach (ADbC.Models.ERNotation n in Model.NotationList)
-        {
-        <p>@Html.RadioButton("notation", n.DescriptionShort, new { id = "radios" }) @n.DescriptionLong</p>
-        }*@
     </div>
     <div class="col-md-3 col-xs-6">
         <h3>Relationship Type</h3>
@@ -51,7 +46,7 @@
         </div>
     </div>
 </div>
-<!--This script watches for each radio button click, and when one from each list is selected, produces an image in the diagram <img /> tag-->
+<!--This script watches for each radio button or list box click, and when one from each list is selected, produces an image in the diagram <img /> tag-->
 <!--This combination of database generated content and javascript interaction provides dynamic construction and performance benefits as opposed
     to doing both elements with one or the other-->
 <script src="/Scripts/ERNotationImageGenerator.js"></script>
