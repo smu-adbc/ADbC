@@ -13,11 +13,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Access Control").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Access Control");
 
                 return View(MBdc);
             }
@@ -27,11 +23,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Security Matrix").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Security Matrix");
 
                 return View(MBdc);
             }
@@ -41,11 +33,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Row Level Security").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Row Level Security");
 
                 return View(MBdc);
             }
@@ -55,11 +43,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("SQL Injection").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("SQL Injection");
 
                 return View(MBdc);
             }
@@ -69,11 +53,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Database Inference").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Database Inference");
 
                 return View(MBdc);
             }
@@ -83,11 +63,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Database Auditing").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Database Auditing");
 
                 return View(MBdc);
             }

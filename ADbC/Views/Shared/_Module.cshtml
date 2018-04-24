@@ -6,21 +6,75 @@
 <div class="body-content">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="row">
-            <h2>@Model.module.ModuleName
-                @if (Model.module.HasIntroModal) {<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#introModal" style="float: right; margin-bottom:inherit">Introduction</button>}
-            </h2>
-        </div>
-        <hr />
-        <div>
-            @RenderBody()
-        </div>
+            <h2>
+                @Model.module.ModuleName
+            @if (Model.module.HasIntroModal)
+            {<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#introModal" style="float: right; margin: 1%">Introduction</button>}
+            <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#usageModal" style="float: right; margin: 1%">Usage</button>
+        </h2>
     </div>
+    <hr />
+    <div>
+        @RenderBody()
+    </div>
+</div>
 </div>
 <!--This big chunk genertes the modal for the introduction/instructions on each module-->
 @if (Model.module.HasIntroModal)
 {
-<!--this is some modal standard stuff-->
-<div class="modal modal fade" id="introModal" role="contentinfo">
+    <!--this is some modal standard stuff-->
+    <div class="modal modal fade" id="introModal" role="contentinfo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>@Model.module.ModuleName</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="accordion" class="panel-group">
+                        <!--We're generating an accordion panel for each section-->
+                        @foreach (ADbC.Models.ModuleIntroSection currentSection in Model.introSections)
+                        {
+                            <!--generating the id dynamically to differentiate between panels-->
+                            string id = "collapse" + currentSection.SectionOrder;
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#@id">@currentSection.SectionTitle</a>
+                                    </h4>
+                                </div>
+                                <!--that x?y:z structure below is a ternary operator, look it up. It sets which is open at load, in this case-->
+                                <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
+                                    <div class="panel-body">
+                                        <!--Stacked foreach loop, so that we output all of the content rows for each section row-->
+                                        @foreach (ADbC.Models.ModuleIntroContent currentContent in Model.introContents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
+                                        {
+                                            <!--This functionality can be expanded, but having the ability to at least designate images built in makes it more reusable-->
+                                            if (currentContent.IsImage)
+                                            {
+                                                <img class="img-responsive img-intro" src="@currentContent.Content" />
+                                            }
+                                            else
+                                            {
+                                                <!--Generally, don't output raw. In this case, it's for ease of use even, and is relatively safe bc of our locked down db (hopefully)-->
+                                                <!--The content rows hold formatting (lists and b tags and such) and I couldn't think of a better way to do this-->
+                                                <p>@Html.Raw(currentContent.Content)</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<!--this is some more modal standard stuff-->
+<div class="modal modal fade" id="usageModal" role="contentinfo">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,7 +84,7 @@
             <div class="modal-body">
                 <div id="accordion" class="panel-group">
                     <!--We're generating an accordion panel for each section-->
-                    @foreach (ADbC.Models.ModuleIntroSection currentSection in Model.sections)
+                    @foreach (ADbC.Models.ModuleUsageSection currentSection in Model.usageSections)
                     {
                         <!--generating the id dynamically to differentiate between panels-->
                         string id = "collapse" + currentSection.SectionOrder;
@@ -42,23 +96,23 @@
                             </div>
                             <!--that x?y:z structure below is a ternary operator, look it up. It sets which is open at load, in this case-->
                             <div id="@id" class="panel-collapse @(currentSection.OpenOnStart ? "in" : "collapse")">
-                                    <div class="panel-body">
-                                        <!--Stacked foreach loop, so that we output all of the content rows for each section row-->
-                                        @foreach (ADbC.Models.ModuleIntroContent currentContent in Model.contents.Where(x => x.ModuleIntroSectionID == currentSection.ModuleIntroSectionID))
+                                <div class="panel-body">
+                                    <!--Stacked foreach loop, so that we output all of the content rows for each section row-->
+                                    @foreach (ADbC.Models.ModuleUsageContent currentContent in Model.usageContents.Where(x => x.ModuleUsageSectionID == currentSection.ModuleUsageSectionID))
+                                    {
+                                        <!--This functionality can be expanded, but having the ability to at least designate images built in makes it more reusable-->
+                                        if (currentContent.IsImage)
                                         {
-                                            <!--This functionality can be expanded, but having the ability to at least designate images built in makes it more reusable-->
-                                            if (currentContent.IsImage)
-                                            {
-                                                <img class="img-responsive img-intro" src="@currentContent.Content"/>
-                                            }
-                                            else
-                                            {
-                                                <!--Generally, don't output raw. In this case, it's for ease of use even, and is relatively safe bc of our locked down db (hopefully)-->
-                                                <!--The content rows hold formatting (lists and b tags and such) and I couldn't think of a better way to do this-->
-                                                <p>@Html.Raw(currentContent.Content)</p>
-                                            }
+                                            <img class="img-responsive img-intro" src="@currentContent.Content" />
                                         }
-                                    </div>
+                                        else
+                                        {
+                                            <!--Generally, don't output raw. In this case, it's for ease of use even, and is relatively safe bc of our locked down db (hopefully)-->
+                                            <!--The content rows hold formatting (lists and b tags and such) and I couldn't think of a better way to do this-->
+                                            <p>@Html.Raw(currentContent.Content)</p>
+                                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     }
@@ -67,6 +121,6 @@
         </div>
     </div>
 </div>
-}
+
 
 

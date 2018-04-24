@@ -13,11 +13,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Concurrency").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Concurrency");
 
                 return View(MBdc);
             }
@@ -27,11 +23,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Recovery").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Recovery");
 
                 return View(MBdc);
             }

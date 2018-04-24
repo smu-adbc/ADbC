@@ -6,6 +6,7 @@
       <Column Name="ModuleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="HasIntroModal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Module_ModuleIntroSection" Member="ModuleIntroSections" ThisKey="ModuleID" OtherKey="ModuleID" Type="ModuleIntroSection" />
+      <Association Name="Module_ModuleUsageSection" Member="ModuleUsageSections" ThisKey="ModuleID" OtherKey="ModuleID" Type="ModuleUsageSection" />
     </Type>
   </Table>
   <Table Name="dbo.ModuleIntroContent" Member="ModuleIntroContents">
@@ -29,6 +30,27 @@
       <Association Name="Module_ModuleIntroSection" Member="Module" ThisKey="ModuleID" OtherKey="ModuleID" Type="Module" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ModuleUsageContent" Member="ModuleUsageContents">
+    <Type Name="ModuleUsageContent" Id="ID5">
+      <Column Name="ModuleUsageContentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleUsageSectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ModuleUsageSection_ModuleUsageContent" Member="ModuleUsageSection" ThisKey="ModuleUsageSectionID" OtherKey="ModuleUsageSectionID" Type="ModuleUsageSection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ModuleUsageSection" Member="ModuleUsageSections">
+    <Type Name="ModuleUsageSection" Id="ID4">
+      <Column Name="ModuleUsageSectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SectionTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SectionOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OpenOnStart" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ModuleUsageSection_ModuleUsageContent" Member="ModuleUsageContents" ThisKey="ModuleUsageSectionID" OtherKey="ModuleUsageSectionID" Type="ModuleUsageContent" />
+      <Association Name="Module_ModuleUsageSection" Member="Module" ThisKey="ModuleID" OtherKey="ModuleID" Type="Module" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.SelectModuleByName" Method="SelectModuleByName">
     <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(1)" />
     <ElementType IdRef="ID1" />
@@ -40,5 +62,17 @@
   <Function Name="dbo.SelectModuleIntroContentByModuleID" Method="SelectModuleIntroContentByModuleID">
     <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
     <ElementType IdRef="ID3" />
+  </Function>
+  <Function Name="dbo.SelectModuleByID" Method="SelectModuleByID">
+    <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.SelectModuleUsageSectionsByModuleID" Method="SelectModuleUsageSectionsByModuleID">
+    <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID4" />
+  </Function>
+  <Function Name="dbo.SelectModuleUsageContentByModuleID" Method="SelectModuleUsageContentByModuleID">
+    <Parameter Name="ModuleID" Parameter="moduleID" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID5" />
   </Function>
 </Database>

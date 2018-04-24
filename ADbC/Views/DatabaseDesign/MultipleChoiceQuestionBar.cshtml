@@ -3,7 +3,7 @@
 <div class="row" id="questionButtons">
     @foreach (ADbC.Models.MCQuestion q in Model.MenuQuestions)
     {
-        <button type="button" class="btn btn-primary" value="@q.DescriptionShort">@q.Title</button>
+        <button type="button" class="btn btn-primary" value="@q.DescriptionShort" style="margin: 4px">@q.Title</button>
     }
 </div>
 

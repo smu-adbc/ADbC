@@ -13,12 +13,8 @@ namespace ADbC.Controllers
         {
             using (ERNotationModelDataContext ERdc = new ERNotationModelDataContext())
             {
-                ERdc.ObjectTrackingEnabled = false;
-
-                ERdc.module = ERdc.SelectModuleByName("ER Notation").ToList().First();
-                ERdc.sections = ERdc.SelectModuleIntroSectionsByModuleID(ERdc.Modules.First().ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                ERdc.contents = ERdc.SelectModuleIntroContentByModuleID(ERdc.Modules.First().ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
+                ERdc.GenerateBaseElements("ER Notation");
+                
                 ERdc.NotationList = ERdc.SelectERNotations().ToList();
                 ERdc.RelationshipList = ERdc.SelectERRelationships().ToList();
 
@@ -30,17 +26,61 @@ namespace ADbC.Controllers
         {
             using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
             {
-                MCdc.ObjectTrackingEnabled = false;
-
-                MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Scenario To ER").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("Scenario To ER").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
+                MCdc.GenerateBaseElements("Scenario To ER");
+                
                 return View(MCdc);
             }            
         }
+        
+        public ActionResult ERToTables()
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.GenerateBaseElements("ER to Tables");
+
+                return View(MCdc);
+            }
+        }
+
+        public ActionResult FunctionalDependencies()
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.GenerateBaseElements("Functional Dependencies");
+                return View(MCdc);
+            }
+        }
+
+        public ActionResult Normalization()
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.GenerateBaseElements("Normalization");
+
+                return View(MCdc);
+            }
+        }
+
+        public ActionResult Denormalization()
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.GenerateBaseElements("Denormalization");
+
+                return View(MCdc);
+            }
+        }
+
+        public ActionResult Anomalies()
+        {
+            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
+            {
+                MCdc.GenerateBaseElements("Anomalies");
+
+                return View(MCdc);
+            }
+        }
+
 
         public PartialViewResult GetERMultipleChoiceQuestion(string shortDescription)
         {
@@ -60,6 +100,8 @@ namespace ADbC.Controllers
                 MCdc.Question = MCdc.SelectMCQuestionByDescShort(shortDescription).ToList().First();
                 MCdc.Answers = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList();
 
+                MCdc.module = MCdc.SelectModuleByID(MCdc.Question.ModuleID).First();
+
                 return PartialView("/Views/DatabaseDesign/TextualMultipleChoicePartialView.cshtml", MCdc);
             }
         }
@@ -75,86 +117,6 @@ namespace ADbC.Controllers
                 MCAnswer answer = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
 
                 return PartialView("/Views/DatabaseDesign/MultipleChoiceResultModal", answer);
-            }
-        }
-
-        public ActionResult ERToTables()
-        {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("ER to Tables").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("ER to Tables").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
-                return View(MCdc);
-            }
-        }
-
-        public ActionResult FunctionalDependencies()
-        {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Functional Dependencies").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("Functional Dependencies").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
-                return View(MCdc);
-            }
-        }
-
-        public ActionResult Normalization()
-        {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Normalization").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("Normalization").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
-                return View(MCdc);
-            }
-        }
-
-        public ActionResult Denormalization()
-        {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Denormalization").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("Denormalization").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
-                return View(MCdc);
-            }
-        }
-
-        public ActionResult Anomalies()
-        {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                //MCdc.MenuQuestions = MCdc.SelectMCQuestionsByModuleName("Anomalies").OrderBy(x => x.MCQuestionID).ToList();
-
-                MCdc.module = MCdc.SelectModuleByName("Anomalies").ToList().First();
-                MCdc.sections = MCdc.SelectModuleIntroSectionsByModuleID(MCdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MCdc.contents = MCdc.SelectModuleIntroContentByModuleID(MCdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
-
-                return View(MCdc);
             }
         }
     }

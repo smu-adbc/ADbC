@@ -11,5 +11,14 @@ namespace ADbC.Models
 
         public MCQuestion Question;        
         public List<MCAnswer> Answers;
+
+        //using 'new' because hiding inherited
+        new public void GenerateBaseElements(string moduleName)
+        {
+            //using inherited to avoid duplication
+            base.GenerateBaseElements(moduleName);
+
+            MenuQuestions = SelectMCQuestionsByModuleName(moduleName).OrderBy(x => x.MCQuestionID).ToList();
+        }
     }
 }

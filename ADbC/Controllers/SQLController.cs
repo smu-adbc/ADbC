@@ -13,11 +13,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Interactive SQL").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Interactive SQL");
 
                 return View(MBdc);
             }
@@ -27,11 +23,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("SQL Pseudocode").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("SQL Pseudocode");
 
                 return View(MBdc);
             }
@@ -41,11 +33,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-                               
-                MBdc.module = MBdc.SelectModuleByName("Embedded SQL").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Embedded SQL");
 
                 return View(MBdc);
             }
@@ -55,11 +43,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Stored Procedures and Triggers").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Stored Procedures and Triggers");
 
                 return View(MBdc);
             }
@@ -69,11 +53,7 @@ namespace ADbC.Controllers
         {
             using (ModuleBaseModelDataContext MBdc = new ModuleBaseModelDataContext())
             {
-                MBdc.ObjectTrackingEnabled = false;
-
-                MBdc.module = MBdc.SelectModuleByName("Referential Integrity").ToList().First();
-                MBdc.sections = MBdc.SelectModuleIntroSectionsByModuleID(MBdc.module.ModuleID).OrderBy(x => x.SectionOrder).ToList();
-                MBdc.contents = MBdc.SelectModuleIntroContentByModuleID(MBdc.module.ModuleID).OrderBy(x => x.ContentOrder).ToList();
+                MBdc.GenerateBaseElements("Referential Integrity");
 
                 return View(MBdc);
             }

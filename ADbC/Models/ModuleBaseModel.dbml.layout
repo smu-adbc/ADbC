@@ -27,11 +27,37 @@
         <classShapeMoniker Id="a04ccf46-1b05-40d8-a4d9-82d28bee1d88" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.31814697265625); (3.5 : 2.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.31814697265625); (3.5 : 2.31814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ModuleBaseModelDataContext/Module/Module_ModuleIntroSection" />
       <nodes>
         <classShapeMoniker Id="f50d54a5-0d30-4cc4-9a8c-59527599e4fc" />
         <classShapeMoniker Id="00601949-7ee8-4e24-a2e4-d2bab3d39e92" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6b7ee066-4738-4731-86ae-801ae3d825a8" absoluteBounds="6.25, 4.375, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ModuleBaseModelDataContext/ModuleUsageContent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b49153a-ad99-41b3-9111-8e6670eb2c91" absoluteBounds="6.265, 4.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f6d5e7f6-2830-41e9-8b4c-e93c12a7ec9c" absoluteBounds="3.5, 4.375, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ModuleBaseModelDataContext/ModuleUsageSection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ff969599-5e0a-45c4-9435-11e7301cc15c" absoluteBounds="3.515, 4.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 5.26044840494792); (6.25 : 5.26044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ModuleBaseModelDataContext/ModuleUsageSection/ModuleUsageSection_ModuleUsageContent" />
+      <nodes>
+        <classShapeMoniker Id="f6d5e7f6-2830-41e9-8b4c-e93c12a7ec9c" />
+        <classShapeMoniker Id="6b7ee066-4738-4731-86ae-801ae3d825a8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 3.0112939453125); (1.75 : 5.26044840494792); (3.5 : 5.26044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ModuleBaseModelDataContext/Module/Module_ModuleUsageSection" />
+      <nodes>
+        <classShapeMoniker Id="f50d54a5-0d30-4cc4-9a8c-59527599e4fc" />
+        <classShapeMoniker Id="f6d5e7f6-2830-41e9-8b4c-e93c12a7ec9c" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

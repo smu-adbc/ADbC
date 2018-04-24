@@ -10,10 +10,10 @@
         <hr />
         <!--From the model, loop through the Notation objs from the db and output radio buttons with name:notation; id:radios; value:DescriptionShort-->
         <h4>Figure 1</h4>
-        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo1" })</p>
+        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo1", style = "max-width:100%"})</p>
         <br />
         <h4>Figure 2</h4>
-        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo2" })</p>
+        <p>@Html.DropDownList("Notations", new SelectList(Model.NotationList, "DescriptionShort", "DescriptionLong"), new { id = "combo2", style = "max-width:100%"})</p>
 
         @*@foreach (ADbC.Models.ERNotation n in Model.NotationList)
         {

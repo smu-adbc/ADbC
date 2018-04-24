@@ -39,6 +39,12 @@ namespace ADbC.Models
     partial void InsertModuleIntroSection(ModuleIntroSection instance);
     partial void UpdateModuleIntroSection(ModuleIntroSection instance);
     partial void DeleteModuleIntroSection(ModuleIntroSection instance);
+    partial void InsertModuleUsageContent(ModuleUsageContent instance);
+    partial void UpdateModuleUsageContent(ModuleUsageContent instance);
+    partial void DeleteModuleUsageContent(ModuleUsageContent instance);
+    partial void InsertModuleUsageSection(ModuleUsageSection instance);
+    partial void UpdateModuleUsageSection(ModuleUsageSection instance);
+    partial void DeleteModuleUsageSection(ModuleUsageSection instance);
     #endregion
 		
 		public ModuleBaseModelDataContext() : 
@@ -95,6 +101,22 @@ namespace ADbC.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<ModuleUsageContent> ModuleUsageContents
+		{
+			get
+			{
+				return this.GetTable<ModuleUsageContent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ModuleUsageSection> ModuleUsageSections
+		{
+			get
+			{
+				return this.GetTable<ModuleUsageSection>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleByName")]
 		public ISingleResult<Module> SelectModuleByName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleName", DbType="VarChar(1)")] string moduleName)
 		{
@@ -115,6 +137,27 @@ namespace ADbC.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
 			return ((ISingleResult<ModuleIntroContent>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleByID")]
+		public ISingleResult<Module> SelectModuleByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
+			return ((ISingleResult<Module>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleUsageSectionsByModuleID")]
+		public ISingleResult<ModuleUsageSection> SelectModuleUsageSectionsByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
+			return ((ISingleResult<ModuleUsageSection>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectModuleUsageContentByModuleID")]
+		public ISingleResult<ModuleUsageContent> SelectModuleUsageContentByModuleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModuleID", DbType="Int")] System.Nullable<int> moduleID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moduleID);
+			return ((ISingleResult<ModuleUsageContent>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Module")]
@@ -131,6 +174,8 @@ namespace ADbC.Models
 		
 		private EntitySet<ModuleIntroSection> _ModuleIntroSections;
 		
+		private EntitySet<ModuleUsageSection> _ModuleUsageSections;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -146,6 +191,7 @@ namespace ADbC.Models
 		public Module()
 		{
 			this._ModuleIntroSections = new EntitySet<ModuleIntroSection>(new Action<ModuleIntroSection>(this.attach_ModuleIntroSections), new Action<ModuleIntroSection>(this.detach_ModuleIntroSections));
+			this._ModuleUsageSections = new EntitySet<ModuleUsageSection>(new Action<ModuleUsageSection>(this.attach_ModuleUsageSections), new Action<ModuleUsageSection>(this.detach_ModuleUsageSections));
 			OnCreated();
 		}
 		
@@ -222,6 +268,19 @@ namespace ADbC.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Module_ModuleUsageSection", Storage="_ModuleUsageSections", ThisKey="ModuleID", OtherKey="ModuleID")]
+		public EntitySet<ModuleUsageSection> ModuleUsageSections
+		{
+			get
+			{
+				return this._ModuleUsageSections;
+			}
+			set
+			{
+				this._ModuleUsageSections.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -249,6 +308,18 @@ namespace ADbC.Models
 		}
 		
 		private void detach_ModuleIntroSections(ModuleIntroSection entity)
+		{
+			this.SendPropertyChanging();
+			entity.Module = null;
+		}
+		
+		private void attach_ModuleUsageSections(ModuleUsageSection entity)
+		{
+			this.SendPropertyChanging();
+			entity.Module = this;
+		}
+		
+		private void detach_ModuleUsageSections(ModuleUsageSection entity)
 		{
 			this.SendPropertyChanging();
 			entity.Module = null;
@@ -678,6 +749,432 @@ namespace ADbC.Models
 		{
 			this.SendPropertyChanging();
 			entity.ModuleIntroSection = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModuleUsageContent")]
+	public partial class ModuleUsageContent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ModuleUsageContentID;
+		
+		private int _ModuleUsageSectionID;
+		
+		private bool _IsImage;
+		
+		private string _Content;
+		
+		private int _ContentOrder;
+		
+		private EntityRef<ModuleUsageSection> _ModuleUsageSection;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnModuleUsageContentIDChanging(int value);
+    partial void OnModuleUsageContentIDChanged();
+    partial void OnModuleUsageSectionIDChanging(int value);
+    partial void OnModuleUsageSectionIDChanged();
+    partial void OnIsImageChanging(bool value);
+    partial void OnIsImageChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnContentOrderChanging(int value);
+    partial void OnContentOrderChanged();
+    #endregion
+		
+		public ModuleUsageContent()
+		{
+			this._ModuleUsageSection = default(EntityRef<ModuleUsageSection>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleUsageContentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ModuleUsageContentID
+		{
+			get
+			{
+				return this._ModuleUsageContentID;
+			}
+			set
+			{
+				if ((this._ModuleUsageContentID != value))
+				{
+					this.OnModuleUsageContentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleUsageContentID = value;
+					this.SendPropertyChanged("ModuleUsageContentID");
+					this.OnModuleUsageContentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleUsageSectionID", DbType="Int NOT NULL")]
+		public int ModuleUsageSectionID
+		{
+			get
+			{
+				return this._ModuleUsageSectionID;
+			}
+			set
+			{
+				if ((this._ModuleUsageSectionID != value))
+				{
+					if (this._ModuleUsageSection.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnModuleUsageSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleUsageSectionID = value;
+					this.SendPropertyChanged("ModuleUsageSectionID");
+					this.OnModuleUsageSectionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImage", DbType="Bit NOT NULL")]
+		public bool IsImage
+		{
+			get
+			{
+				return this._IsImage;
+			}
+			set
+			{
+				if ((this._IsImage != value))
+				{
+					this.OnIsImageChanging(value);
+					this.SendPropertyChanging();
+					this._IsImage = value;
+					this.SendPropertyChanged("IsImage");
+					this.OnIsImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentOrder", DbType="Int NOT NULL")]
+		public int ContentOrder
+		{
+			get
+			{
+				return this._ContentOrder;
+			}
+			set
+			{
+				if ((this._ContentOrder != value))
+				{
+					this.OnContentOrderChanging(value);
+					this.SendPropertyChanging();
+					this._ContentOrder = value;
+					this.SendPropertyChanged("ContentOrder");
+					this.OnContentOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModuleUsageSection_ModuleUsageContent", Storage="_ModuleUsageSection", ThisKey="ModuleUsageSectionID", OtherKey="ModuleUsageSectionID", IsForeignKey=true)]
+		public ModuleUsageSection ModuleUsageSection
+		{
+			get
+			{
+				return this._ModuleUsageSection.Entity;
+			}
+			set
+			{
+				ModuleUsageSection previousValue = this._ModuleUsageSection.Entity;
+				if (((previousValue != value) 
+							|| (this._ModuleUsageSection.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ModuleUsageSection.Entity = null;
+						previousValue.ModuleUsageContents.Remove(this);
+					}
+					this._ModuleUsageSection.Entity = value;
+					if ((value != null))
+					{
+						value.ModuleUsageContents.Add(this);
+						this._ModuleUsageSectionID = value.ModuleUsageSectionID;
+					}
+					else
+					{
+						this._ModuleUsageSectionID = default(int);
+					}
+					this.SendPropertyChanged("ModuleUsageSection");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModuleUsageSection")]
+	public partial class ModuleUsageSection : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ModuleUsageSectionID;
+		
+		private int _ModuleID;
+		
+		private string _SectionTitle;
+		
+		private int _SectionOrder;
+		
+		private bool _OpenOnStart;
+		
+		private EntitySet<ModuleUsageContent> _ModuleUsageContents;
+		
+		private EntityRef<Module> _Module;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnModuleUsageSectionIDChanging(int value);
+    partial void OnModuleUsageSectionIDChanged();
+    partial void OnModuleIDChanging(int value);
+    partial void OnModuleIDChanged();
+    partial void OnSectionTitleChanging(string value);
+    partial void OnSectionTitleChanged();
+    partial void OnSectionOrderChanging(int value);
+    partial void OnSectionOrderChanged();
+    partial void OnOpenOnStartChanging(bool value);
+    partial void OnOpenOnStartChanged();
+    #endregion
+		
+		public ModuleUsageSection()
+		{
+			this._ModuleUsageContents = new EntitySet<ModuleUsageContent>(new Action<ModuleUsageContent>(this.attach_ModuleUsageContents), new Action<ModuleUsageContent>(this.detach_ModuleUsageContents));
+			this._Module = default(EntityRef<Module>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleUsageSectionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ModuleUsageSectionID
+		{
+			get
+			{
+				return this._ModuleUsageSectionID;
+			}
+			set
+			{
+				if ((this._ModuleUsageSectionID != value))
+				{
+					this.OnModuleUsageSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleUsageSectionID = value;
+					this.SendPropertyChanged("ModuleUsageSectionID");
+					this.OnModuleUsageSectionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModuleID", DbType="Int NOT NULL")]
+		public int ModuleID
+		{
+			get
+			{
+				return this._ModuleID;
+			}
+			set
+			{
+				if ((this._ModuleID != value))
+				{
+					if (this._Module.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnModuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ModuleID = value;
+					this.SendPropertyChanged("ModuleID");
+					this.OnModuleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SectionTitle
+		{
+			get
+			{
+				return this._SectionTitle;
+			}
+			set
+			{
+				if ((this._SectionTitle != value))
+				{
+					this.OnSectionTitleChanging(value);
+					this.SendPropertyChanging();
+					this._SectionTitle = value;
+					this.SendPropertyChanged("SectionTitle");
+					this.OnSectionTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionOrder", DbType="Int NOT NULL")]
+		public int SectionOrder
+		{
+			get
+			{
+				return this._SectionOrder;
+			}
+			set
+			{
+				if ((this._SectionOrder != value))
+				{
+					this.OnSectionOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SectionOrder = value;
+					this.SendPropertyChanged("SectionOrder");
+					this.OnSectionOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OpenOnStart", DbType="Bit NOT NULL")]
+		public bool OpenOnStart
+		{
+			get
+			{
+				return this._OpenOnStart;
+			}
+			set
+			{
+				if ((this._OpenOnStart != value))
+				{
+					this.OnOpenOnStartChanging(value);
+					this.SendPropertyChanging();
+					this._OpenOnStart = value;
+					this.SendPropertyChanged("OpenOnStart");
+					this.OnOpenOnStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModuleUsageSection_ModuleUsageContent", Storage="_ModuleUsageContents", ThisKey="ModuleUsageSectionID", OtherKey="ModuleUsageSectionID")]
+		public EntitySet<ModuleUsageContent> ModuleUsageContents
+		{
+			get
+			{
+				return this._ModuleUsageContents;
+			}
+			set
+			{
+				this._ModuleUsageContents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Module_ModuleUsageSection", Storage="_Module", ThisKey="ModuleID", OtherKey="ModuleID", IsForeignKey=true)]
+		public Module Module
+		{
+			get
+			{
+				return this._Module.Entity;
+			}
+			set
+			{
+				Module previousValue = this._Module.Entity;
+				if (((previousValue != value) 
+							|| (this._Module.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Module.Entity = null;
+						previousValue.ModuleUsageSections.Remove(this);
+					}
+					this._Module.Entity = value;
+					if ((value != null))
+					{
+						value.ModuleUsageSections.Add(this);
+						this._ModuleID = value.ModuleID;
+					}
+					else
+					{
+						this._ModuleID = default(int);
+					}
+					this.SendPropertyChanged("Module");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ModuleUsageContents(ModuleUsageContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModuleUsageSection = this;
+		}
+		
+		private void detach_ModuleUsageContents(ModuleUsageContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModuleUsageSection = null;
 		}
 	}
 }
