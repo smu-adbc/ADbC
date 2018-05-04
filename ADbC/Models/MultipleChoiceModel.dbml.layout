@@ -14,7 +14,7 @@
         <elementListCompartment Id="44ee7d89-25f7-4e4a-9c2e-7e1642eeeff0" absoluteBounds="3.765, 1.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 2.10659912109375); (3.75 : 2.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 2.10659912109375); (3.75 : 2.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MultipleChoiceModelDataContext/MCQuestion/MCQuestion_MCAnswer" />
       <nodes>
         <classShapeMoniker Id="93e97b8a-4a6b-430e-961e-d46d583e23e5" />

@@ -39,7 +39,7 @@ namespace ADbC.Models
     #endregion
 		
 		public MultipleChoiceModelDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["adbcConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

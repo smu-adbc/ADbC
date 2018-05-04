@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adbc" Class="ERNotationModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.csntfunmwnnr.us-west-2.rds.amazonaws.com,1433;Initial Catalog=adbc;User ID=adbcuser;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="adbcConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=adbc.stmartin.edu;Initial Catalog=adbc;User ID=adbcuser" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="adbcConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ERRelationship" Member="ERRelationships">
     <Type Name="ERRelationship" Id="ID2">
       <Column Name="ERRelationshipID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
