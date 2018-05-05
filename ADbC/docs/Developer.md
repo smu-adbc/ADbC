@@ -31,6 +31,8 @@ Due to the auto-generation of code that occurs when using the LINQ-to-SQL dataco
 Model inheritance is not an explicitly supported feature of these DCs, and so modifying the DC designer will cause the name of the parent class to be overwritten with the name of the default parent class, thereby causing build errors due to mismatched parent classes in the partial class files, as well as "missing" attributes that are present on the custom parent but not the defaul parent. 
 To remedy this, modify the {model name}.designer.cs file and change the parent class name from the default to the custom parent. 
 
+The module introductory modals are constructed from database rows defining sections and section content. Currently, these are collected as HTML that is inserted directly into the page being rendered. This is not the best implementation, but provided much a much simpler way to account for emphasized text, lists, and other formatting anomalies. Using RTF if possible, or even setting type codes for various elements of the modal content, would allow for similar results, but is a bigger time investment. This would be a great feature to take on as a relatively small-scale improvement on the current system.
+
 ---
 
 ## Author's notes
