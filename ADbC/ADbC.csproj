@@ -374,6 +374,7 @@
       <LastGenOutput>ModuleBaseModel.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="docs\adbc.doc" />
     <None Include="Models\ModuleBaseModel.dbml.layout">
       <DependentUpon>ModuleBaseModel.dbml</DependentUpon>
     </None>
@@ -478,7 +479,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="docs\" />
     <Folder Include="SQL\etc\" />
   </ItemGroup>
   <ItemGroup>
