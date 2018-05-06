@@ -1,6 +1,14 @@
-﻿
+﻿@model ADbC.Models.MultipleChoiceModelDataContext
+
 @{
     ViewBag.Title = "Denormalization";
     Layout = "~/Views/Shared/_Module.cshtml";
 }
 
+@{Html.RenderPartial("MultipleChoiceQuestionBar");}
+
+<div id="question">
+    <h4>Select an exercise scenario or view instructions using the buttons above!</h4>
+</div>
+<script src="~/Scripts/MCQuestionSelector.js"></script>
+<div id="loader" data-url="@Url.Action("GetTextualMultipleChoiceQuestion", "DatabaseDesign")"></div>
