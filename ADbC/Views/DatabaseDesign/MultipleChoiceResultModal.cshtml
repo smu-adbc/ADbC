@@ -11,8 +11,24 @@
             <div class="modal-body">
                 @if (Model.HasImage)
                 {
-                    string resultImgSrc = Model.RelativeAnswerID + "result";
-                    <img class="img-responsive" id="resultImage" src="@resultImgSrc" style="margin:0px auto"/>
+                    string resultImgSrc = string.Empty;
+
+                    switch (Model.RelativeAnswerID)
+                    {
+                        case 1:
+                            resultImgSrc = "A";
+                            break;
+                        case 2:
+                            resultImgSrc = "B";
+                            break;
+                        case 3:
+                            resultImgSrc = "C";
+                            break;
+                        case 4:
+                            resultImgSrc = "D";
+                            break;
+                    }
+                    <img class="img-responsive" id="resultImage" src="@String.Concat(Model.ImagePath, @resultImgSrc)" style="margin:0px auto"/>
                 }
                 <h4>@Model.ResponseText</h4>
             </div>

@@ -93,5 +93,6 @@
 
 @foreach (ADbC.Models.MCAnswer a in Model.Answers)
 {
+    a.ImagePath = "/Content/Images/" + Model.module.ModuleName + "/" + Model.Question.DescriptionShort + "/";
     { Html.RenderPartial("MultipleChoiceResultModal", a); }
 }

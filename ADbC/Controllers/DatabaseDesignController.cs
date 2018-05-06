@@ -107,17 +107,9 @@ namespace ADbC.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult MultipleChoiceResultModal(string descShort, int relativeAnswerID)
+        public PartialViewResult MultipleChoiceResultModal(MCAnswer answer)
         {
-            using (MultipleChoiceModelDataContext MCdc = new MultipleChoiceModelDataContext())
-            {
-                MCdc.ObjectTrackingEnabled = false;
-
-                MCdc.Question = MCdc.SelectMCQuestionByDescShort(descShort).ToList().First();
-                MCAnswer answer = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList().Where(x => x.RelativeAnswerID == relativeAnswerID).First();
-
-                return PartialView("/Views/DatabaseDesign/MultipleChoiceResultModal", answer);
-            }
+            return PartialView("/Views/DatabaseDesign/MultipleChoiceResultModal", answer);
         }
     }
 }

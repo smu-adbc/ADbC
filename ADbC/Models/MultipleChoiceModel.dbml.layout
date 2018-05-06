@@ -8,10 +8,10 @@
         <elementListCompartment Id="7b2cef38-ee26-4cb2-a7aa-1549e904628d" absoluteBounds="0.88999999999999968, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b59f9c06-0fb6-4420-8235-977795ddccde" absoluteBounds="3.75, 1.375, 2, 2.1554996744791666">
+    <classShape Id="b59f9c06-0fb6-4420-8235-977795ddccde" absoluteBounds="3.75, 1.375, 2, 2.3478011067708335">
       <DataClassMoniker Name="/MultipleChoiceModelDataContext/MCAnswer" />
       <nestedChildShapes>
-        <elementListCompartment Id="44ee7d89-25f7-4e4a-9c2e-7e1642eeeff0" absoluteBounds="3.765, 1.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="44ee7d89-25f7-4e4a-9c2e-7e1642eeeff0" absoluteBounds="3.765, 1.835, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.875 : 2.10659912109375); (3.75 : 2.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">

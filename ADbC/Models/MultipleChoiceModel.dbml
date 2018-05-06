@@ -20,6 +20,7 @@
       <Column Name="ResponseText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="HasImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="AnswerText" Type="System.String" CanBeNull="false" />
+      <Column Member="ImagePath" Type="System.String" CanBeNull="false" />
       <Association Name="MCQuestion_MCAnswer" Member="MCQuestion" ThisKey="QuestionID" OtherKey="MCQuestionID" Type="MCQuestion" IsForeignKey="true" />
     </Type>
   </Table>
