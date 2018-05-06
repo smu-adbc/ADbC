@@ -336,6 +336,8 @@ namespace ADbC.Models
 		
 		private string _AnswerText;
 		
+		private string _ImagePath;
+		
 		private EntityRef<MCQuestion> _MCQuestion;
 		
     #region Extensibility Method Definitions
@@ -356,6 +358,8 @@ namespace ADbC.Models
     partial void OnHasImageChanged();
     partial void OnAnswerTextChanging(string value);
     partial void OnAnswerTextChanged();
+    partial void OnImagePathChanging(string value);
+    partial void OnImagePathChanged();
     #endregion
 		
 		public MCAnswer()
@@ -504,6 +508,26 @@ namespace ADbC.Models
 					this._AnswerText = value;
 					this.SendPropertyChanged("AnswerText");
 					this.OnAnswerTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImagePath", CanBeNull=false)]
+		public string ImagePath
+		{
+			get
+			{
+				return this._ImagePath;
+			}
+			set
+			{
+				if ((this._ImagePath != value))
+				{
+					this.OnImagePathChanging(value);
+					this.SendPropertyChanging();
+					this._ImagePath = value;
+					this.SendPropertyChanged("ImagePath");
+					this.OnImagePathChanged();
 				}
 			}
 		}

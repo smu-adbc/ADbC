@@ -66,6 +66,7 @@
 <!--These calls render the code for the modals for each of the answer results into the bottom of the page-->
 @foreach (ADbC.Models.MCAnswer a in Model.Answers)
 {
+    a.ImagePath = "/Content/Images/" + Model.module.ModuleName + "/" + Model.Question.DescriptionShort + "/";
     {Html.RenderPartial("MultipleChoiceResultModal", a);}
 }
 
