@@ -89,6 +89,8 @@ namespace ADbC.Controllers
                 MCdc.Question = MCdc.SelectMCQuestionByDescShort(shortDescription).ToList().First();
                 MCdc.Answers = MCdc.SelectMCAnswersByQuestionID(MCdc.Question.MCQuestionID).ToList();
 
+                MCdc.module = MCdc.SelectModuleByID(MCdc.Question.ModuleID).First();
+
                 return PartialView("/Views/DatabaseDesign/ERMultipleChoicePartialView.cshtml", MCdc);
             }
         }

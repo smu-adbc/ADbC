@@ -28,7 +28,7 @@
                             resultImgSrc = "D";
                             break;
                     }
-                    <img class="img-responsive" id="resultImage" src="@String.Concat(Model.ImagePath, @resultImgSrc)" style="margin:0px auto"/>
+                    <img class="img-responsive" id="resultImage" src="@String.Concat(Model.ImagePath, @resultImgSrc, ".PNG")" style="margin:0px auto"/>
                 }
                 <h4>@Model.ResponseText</h4>
             </div>
