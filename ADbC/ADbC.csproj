@@ -233,6 +233,7 @@
     <Content Include="Content\Images\Anomalies\Update2\A.PNG" />
     <Content Include="Content\Images\Anomalies\Update2\B.PNG" />
     <Content Include="Content\Images\Anomalies\Update2\C.PNG" />
+    <Content Include="Content\Images\cone.png" />
     <Content Include="Content\Images\Denormalization\PriceQuotes\A.PNG" />
     <Content Include="Content\Images\Denormalization\PriceQuotes\B.PNG" />
     <Content Include="Content\Images\Denormalization\PriceQuotes\C.PNG" />
@@ -270,6 +271,7 @@
     <Content Include="Content\Images\ER to Tables\Prompts\1NUnary.PNG" />
     <Content Include="Content\Images\ER to Tables\Prompts\NNBinary.PNG" />
     <Content Include="Content\Images\ER to Tables\Prompts\NNUnary.PNG" />
+    <Content Include="Content\Images\Functional Dependencies\Prompts\Stocks.PNG" />
     <Content Include="Content\Images\Logos\adbcLogoLight.png" />
     <Content Include="Content\Images\ERNotation\CrowsFeet\11Binary.PNG" />
     <Content Include="Content\Images\ERNotation\CrowsFeet\1nUnary.PNG" />
@@ -500,7 +502,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -532,6 +536,7 @@
     <Content Include="Views\DatabaseDesign\MultipleChoiceQuestionBar.cshtml" />
     <Content Include="Views\DatabaseDesign\TextualMultipleChoicePartialView.cshtml" />
     <Content Include="Views\DatabaseDesign\Anomalies.cshtml" />
+    <Content Include="Views\Shared\_Construction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
