@@ -13,8 +13,11 @@ This methodology provides distinct forms of separation between independent funct
 Each module grouping (Database Design, SQL, etc.) is given its own controller and set of views. Each module is then provided with its own view, and at points its independent model and any necessary partial views. 
 In order to ease the development of the individual modules and reduce duplication, template views, reusable partials, and model inheritance are leveraged wherever possible. 
 
-Database content is used to provide not only the module elements like questions and answers, but also used to construct things like menus (example in Views -> Database Design -> MultipleChoiceQuestionBar) in order to provide expandability and modification without altering the .cshtml elements of the site. 
+Database content is used to provide not only the module elements like questions and answers, but also used to construct things like menus (example in `Views` -> `Database Design` -> `MultipleChoiceQuestionBar`) in order to provide expandability and modification without altering the .cshtml elements of the site. 
 For the example above, adding/removing question rows or modifying question text in the database is sufficient to alter the content provided to the users. 
+
+Adding content to the models through additional partial class files can be useful for providing general-use methods and other attributes, especially in regards to models from which others inherit. 
+This can be seen in `ModuleBaseModel.cs`, where the `GenerateBaseElements` method provides the object for the module itself, as well as the objects required to construct the Introduction and Usage modals. 
 
 ## Source control
 
@@ -29,7 +32,7 @@ Currently, the version of ADbC that is currently active (available within Saint 
 
 Due to the auto-generation of code that occurs when using the LINQ-to-SQL datacontexts (DCs)that ADbC's models are built on, the model inheritance between these requires special attention in order for it to function properly. 
 Model inheritance is not an explicitly supported feature of these DCs, and so modifying the DC designer will cause the name of the parent class to be overwritten with the name of the default parent class, thereby causing build errors due to mismatched parent classes in the partial class files, as well as "missing" attributes that are present on the custom parent but not the defaul parent. 
-To remedy this, modify the {model name}.designer.cs file and change the parent class name from the default to the custom parent. 
+To remedy this, modify the `{model name}.designer.cs` file and change the parent class name from the default to the custom parent. 
 
 The module introductory modals are constructed from database rows defining sections and section content. Currently, these are collected as HTML that is inserted directly into the page being rendered. This is not the best implementation, but provided much a much simpler way to account for emphasized text, lists, and other formatting anomalies. Using RTF if possible, or even setting type codes for various elements of the modal content, would allow for similar results, but is a bigger time investment. This would be a great feature to take on as a relatively small-scale improvement on the current system.
 
